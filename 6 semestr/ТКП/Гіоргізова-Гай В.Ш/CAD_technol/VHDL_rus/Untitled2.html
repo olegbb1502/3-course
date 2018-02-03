@@ -1,0 +1,37 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+	<title>Untitled</title>
+<SCRIPT Language="Javascript">
+<!--    
+PicVal = new Array(4);
+PicVal[0] = "/images/base.gif";
+PicVal[1] = "/images/bullet.gif";
+PicVal[2] = "/images/1.gif";
+PicVal[3] = "/images/page.gif";
+function Show() {
+  if(document.Form.one.checked ='on') {document.src = PicVal[0];}
+  if(document.Form.two.checked ='on') {document.src = PicVal[1];}
+  if((document.Form.one.checked ="on") && (document.Form.two.checked ="on")) {document.src = PicVal[2];}
+  if((document.Form.one.checked ="off") && (document.Form.two.checked ="off")) {document.src = PicVal[3];}
+}
+// -->
+</SCRIPT>
+
+</head>
+<body>
+
+<FORM NAME="Form">
+<table border=0 height=100% width=100%>
+<tr align=center>
+<td height=30>
+  <input type="checkbox" name="one" onClick="Show()">
+  <input type="checkbox" name="two" onClick="Show()">
+</td>
+</tr>
+</table>
+</FORM>
+
+</body>
+</html>

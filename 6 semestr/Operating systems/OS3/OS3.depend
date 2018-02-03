@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1496826148 source:d:\university\katya\university\6 semestr\operating systems\os3\main.cpp
+	<windows.h>
+	<cstdio>
+	<iostream>
+	<string>
+	<vector>
+

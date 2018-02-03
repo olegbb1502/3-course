@@ -1,0 +1,13 @@
+813
+~M 1 "./src/func12.v" 25 func12
+~A 1 "./src/func12.v" 25 func12
+~M 3 "./src/function1and2.v" 25 \\\function1and2 \
+~A 1 "./src/function1and2.v" 25 \\\function1and2 \
+~M 0 "" 0 $root
+~A 1 "" 0 $root
+~M 3 "./src/function1and2.v" 25 \\\function_1_and_2 \
+~A 1 "./src/function1and2.v" 25 \\\function_1_and_2 \
+~M 3 "./src/function1.v" 25 function1
+~A 1 "./src/function1.v" 25 function1
+~M 3 "./compile/test.v" 30 test
+~A 1 "./compile/test.v" 30 test

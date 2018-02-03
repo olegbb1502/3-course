@@ -1,0 +1,7 @@
+151
+~M 1 "./src/mux.v" 25 MUX
+~A 1 "./src/mux.v" 25 MUX
+~M 0 "" 0 $root
+~A 1 "" 0 $root
+~M 3 "./compile/muxx.v" 30 MUXX
+~A 1 "./compile/muxx.v" 30 MUXX

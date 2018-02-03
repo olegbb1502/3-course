@@ -1,0 +1,89 @@
+$WAVE4
+$RESOLUTION 1000
+$ENDTIME 600000
+I 1 "e#V4#wirec4 01zx"
+$IN 1 1 A0
+$IN 2 1 A1
+$IN 3 1 D0
+$IN 4 1 D1
+$IN 5 1 D2
+$IN 6 1 D3
+$OUT 7 1 notY
+P 0 1-7 CS "1"
+P 0 2 Stimulator "CLK:FRM:Override:100.000000;2;1;0;50;1:Clock:1:"
+P 0 1 Stimulator "CLK:FRM:Override:200.000000;2;1;0;50;1:Clock:1:"
+P 0 3 Stimulator "CLK:FRM:Override:50.000000;2;1;0;50;0:Clock:1:"
+P 0 5 Stimulator "CLK:FRM:Override:50.000000;2;1;0;50;1:Clock:1:"
+P 0 6 Stimulator "VAL:FRM:Override:0:<= 0:1:"
+P 0 4 Stimulator "VAL:FRM:Override:1:<= 1:1:"
+$WAVES 1
+=0 T 0
+=1 D 0 1
+R 1 6 =2 T 100k
+$VALUES
+V 1
+z
+R 2 3 0 1
+V 1
+0
+$END
+$WAVES 2
+*0
+*1
+R 1 12 =3 T 50k
+$VALUES
+V 1
+z
+R 2 6 0 1
+V 1
+0
+$END
+$WAVES 3
+*0
+*1
+R 1 24 =4 T 25k
+$VALUES
+V 1
+z
+R 2 12 1 0
+V 1
+1
+$END
+$WAVES 4
+*0
+*1
+$VALUES
+V 2
+z
+1
+$END
+$WAVES 5
+*0
+*1
+R 1 24 *4
+$VALUES
+V 1
+z
+R 2 12 0 1
+V 1
+0
+$END
+$WAVES 6
+*0
+*1
+$VALUES
+V 2
+z
+0
+$END
+$WAVES 7
+*0
+=5 T 1k
+R 1 2 *4
+R 3 5 *3 *4 *4
+$VALUES
+V 1
+x
+R 2 9 0 1
+$END
+$ENDWAVE

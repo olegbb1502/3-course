@@ -1,0 +1,302 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+	<title>VHDL</title>
+	<META content="text/html; charset=windows-1251" http-equiv=Content-Type>
+<style type="text/css">
+<!--
+a
+{
+text-decoration:none;
+font-size: 12px;
+}
+a:link {
+	color: #005db6;/*themecolour5;*/
+}
+a:visited {
+	color: #3c9bf7;
+}
+a:link:hover {
+	color: #0a8f23;/*themecolour1;*/
+}
+#r
+{
+color:#009933;
+font-family:Arial;
+position:relative; 
+font-size: 12px;
+top:0px;
+text-align:center;
+padding-left:15px;
+padding-right:400px;
+}
+p{
+font-family:Arial;
+position:relative; 
+font-size: 12px;
+top:0px;
+color:#003399;
+padding-left:15px;
+padding-right:10px;
+padding-bottom:19px;
+text-align:justify;
+}
+h1 {
+	font-family:Arial;
+	font-size: 16px;
+	color: #005db6;/*themecolour5;*/
+	margin-top: 0px;
+	margin-bottom: 3px;
+	text-align:justify; 
+	padding-left:10px; 
+	position:relative; 
+	top:0px
+}
+#c {text-align:justify; 
+	padding-left:10px; 
+	position:relative; 
+	top:0px
+	}
+.header2, h2
+{
+padding-left: 20px; 
+color:#005db6; 
+background: #DBEAF5; 
+font-weight: bold; 
+font-family: Tahoma, Verdana; 
+font-size: 12px;
+}
+ul {
+	margin-top: 0px;
+	margin-bottom: 0px;
+	list-style-image: url(images/bullet.gif); 
+    color:#005db6; 
+    font-family: Arial, Tahoma, Verdana; 
+    font-size: 12px;
+}
+-->
+</style>
+
+<!--JavaSсript для регулировки размера страницы от расширения экрана -->
+
+<SCRIPT LANGUAGE "JavaScript" TYPE="text/javascript">
+var img1=new Image(); img1.src='images/buttom_01.gif'
+var img2=new Image(); img2.src='images/buttom_1_over.gif'
+</SCRIPT>
+<script language="JavaScript">
+var s=screen;
+width=s.width;
+var tabl = 100;
+var w = width;
+if ( w >= 1024 ) { tabl = 95; }
+if ( w >= 1152 ) { tabl = 85; }
+if ( w >= 1280 ) { tabl = 75; }
+document.write('<table width='+tabl+'% height=100%>');
+</script>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" leftmargin="0" rightmargin="0" topmargin="0" marginwidth="0">
+
+<!--Начало HTML-кода заголовка -->
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" height="100" background="images/bg.gif">
+  <tr> 
+    <td width="50%"><div align="left"><img src="images/top.gif" width="274" height="100"></div>
+	</td>
+    <td width="50%">
+      <div align="right"><img src="images/top_graphic.gif" width="400" height="100"></div>
+    </td>
+  </tr>
+</table>
+
+<!--Конец HTML-кода заголовка -->
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" height="100">
+  <tr>
+    
+	<!--Начало HTML-кода menu -->
+	
+	<td width="7%" valign="top" style="background-image: url(images/b_navbar_bg.gif)">
+	  <table width=135 border=0 cellpadding=0 cellspacing=0>
+       <tr> 
+         <td colspan=4> <img src="images/menu_1.gif" width=135 height=23></td>
+       </tr>
+      <tr> 
+		  <td> <img src="images/menu_02_1.gif" width=11 height=32></td>
+         <td> <img src="images/menu_02_2_top.gif" width=3 height=32></td>
+		 <td> <a href="index.html"> <IMG SRC="images/button_01.gif" WIDTH="118" HEIGHT="32" BORDER="0"  onMOUSEoVER="this.src='images/button_01_over.gif'"
+<IMG SRC="images/button_01.gif" WIDTH="118" HEIGHT="32" BORDER=0"  onMouseOver="this.src='images/button_01_over.gif'" onMouseOut="this.src='images/button_01.gif'"></a></td>
+         <td> <img src="images/menu_04_1.gif" width=3 height=32></td>
+       </tr>
+	  
+	  <tr>
+		  <td rowspan=2>              <!--Для добавления или уменьшения  количества кнопок в меню изменить это число
+		                                по формуле: Rowspan=Число_кнопок_в_меню - 2   
+								      -->
+		    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+               <tr> 
+                 <td>
+	             </td>
+               </tr>
+            </table>
+		  </td>
+		  <td colspan=3>
+		    <table width="100%" height="100%" border="0" cellspacing="0" cellpadding="0">
+               <tr> 
+	          <td> <a href="overview.html"> <IMG SRC="images/button_02.gif" WIDTH="124" HEIGHT="32" BORDER="0"  onMOUSEoVER="this.src='images/button_02_over.gif'"
+<IMG SRC="images/button_02.gif" WIDTH="124" HEIGHT="32" BORDER=0"  onMouseOver="this.src='images/button_02_over.gif'" onMouseOut="this.src='images/button_02.gif'"></a></td>   
+			   </tr>
+            </table>
+		  </td>
+	  </tr>	  
+	  
+	  <tr>  <!--Начало HTML-кода кнопки -->
+		  <td colspan=3>
+		    <table width="100%" height="100%" border="0" cellspacing="0" cellpadding="0">
+               <tr> 
+	           <td> <a href="map.html"> <IMG SRC="images/button_03.gif" WIDTH="124" HEIGHT="32" BORDER="0"  onMOUSEoVER="this.src='images/button_03_over.gif'"
+<IMG SRC="images/button_03.gif" WIDTH="124" HEIGHT="32" BORDER=0"  onMouseOver="this.src='images/button_03_over.gif'" onMouseOut="this.src='images/button_03.gif'"></a></td>     
+			   </tr>
+            </table>
+		  </td>
+	  </tr>	 <!--Конец HTML-кода кнопки -->
+	  
+	  <!--Чтобы добавить кнопку нужно скопировать выше написаный код, между обозначениями  
+	  "начало" и "конец" HTML-кода кнопки и вставить его после этих комментариев-->
+	  
+	  
+	  <tr> 
+		  <td> <img src="images/menu_02_1.gif" width=11 height=32></td>
+         <td> <img src="images/menu_02_3.gif" width=3 height=32></td>
+		 <td> <a href="author.html"> <IMG SRC="images/button_04.gif" WIDTH="118" HEIGHT="32" BORDER="0"  onMOUSEoVER="this.src='images/button_04_over.gif'"
+<IMG SRC="images/button_04.gif" WIDTH="118" HEIGHT="32" BORDER=0"  onMouseOver="this.src='images/button_04_over.gif'" onMouseOut="this.src='images/button_04.gif'"></a></td>
+         <td> <img src="images/menu_04_1.gif" width=3 height=32></td>
+       </tr>
+	  <tr> 
+		  <td colspan=2> <img src="images/menu_02_2.gif" width=11 height=38></td>
+	     <td> <img src="images/menu_09.gif" width=118 height=38></td>
+	     <td> <img src="images/menu_04_2.gif" width=3 height=38></td>
+	   </tr> 
+	  </table>
+	</td>
+   
+   <!--Конец HTML-кода menu -->
+   
+    <td width="97%">
+	  <table border=0  width="100%" cellspacing="0" cellpadding="0">
+	    <!--Начало HTML-кода основного текста -->
+		<tr><td class="header2" colspan=2>Конструкции Для Описания Поведения Системы - Константы
+		
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="overview.html">Глава:5</a>><a href="5_5_1.html">Часть:5</a>>Страница:2</td></tr>
+		<tr>
+          <td height="314"  style="position:relative; top:0px">
+		  <script language="JavaScript">
+         var s=screen;
+height=s.height;
+var tabl = 300;
+var h = height;
+if ( h >= 768 ) { tabl = 450; }
+document.write('<td height='+tabl+'px>');
+</script><br><DIV ALIGN="center"><a href="5_5_1.html">< НАЗАД ></a>  <a href="5_5_3.html">< ВПЕРЕД ></a></div>
+		  <ul >
+		 <li><a href="5_5_1.html">Объявление констант</a></li>
+		 <li><a href="5_5_2.html">Использование констант</a></li>
+		 <li><a href="5_5_3.html">
+Константы против generics.
+</a></li>
+		 
+	
+		 </ul><br><br>
+		  <div id="r">&nbsp;&nbsp;&nbsp;&nbsp;Использование констант.</div> 
+		  <p>
+		  <img name="dim"align="right" src="images/image5_5_2.jpg" usemap="#dim">
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Главная цель использовать константы состоит в том, чтобы применить "четкие названия" с явно определенными типами вместо буквальных значений, которые называют "трудно-кодированными". Благодаря этому, код становиться более ясным и более простым в обслуживании, так как изменение константы в одном месте затронет все его случаи в полной архитектуре. Если трудно-кодированные значения использовались, пользователь должен тщательно проверить всю спецификацию, линию за линией, чтобы быть уверенным в том, что все значения были исправлены.
+
+
+<br><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Константы, в общем, используются также как и generics. Они используются для
+
+<br><br>
+
+<style type="text/css">
+<!--
+ul {
+	margin-top: 0px;
+	margin-bottom: 0px;
+	list-style-image: url(images/bullet.gif); 
+    color:#003399; 
+    font-family: Arial, Tahoma, Verdana; 
+    font-size: 12px;
+}
+p{
+font-family:Arial;
+position:relative; 
+font-size: 12px;
+top:0px;
+color:#003399;
+padding-left:15px;
+padding-right:10px;
+padding-bottom:19px;
+text-align:justify;
+}
+-->
+</style>
+
+ <ul ><li>  указания размера составных объектов (подобно массивам или шинам), </li>
+ <li>  управления счетчиками цикла,  </li>
+ <li>определения синхронизации параметров  задержек, времени установки, времени удерживания, времени переключения и т.д.
+  </li>
+ 
+   </ul>
+   </p>
+   <p>   
+   
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Так как константы описываются в архитектуре, они не могут использоваться для определения размера векторов описанных как порты в объектах (см. примеры на странице 443). Это главная причина, почему этот случай не указывается в примерах справа. Однако, это ограничение может быть преодолено, если константа описывается в пакете, который используется объектом.
+ <map name="dim">
+<area alt="" coords="61,514,198,450" onClick="document.dim.src= 'images/image5_5_2o1.jpg'">
+<area alt="" coords="242,498,383,449" onClick="document.dim.src= 'images/image5_5_2o2.jpg'">
+</map>
+
+<br><br>
+</p>
+<br><DIV ALIGN="center"><a href="5_5_1.html">< НАЗАД ></a>  <a href="5_5_3.html">< ВПЕРЕД ></a></div>
+		
+		</td>
+		</tr>
+		<!--Конец HTML-кода основного текста -->
+		
+		<!--Начало HTML-кода конечного изображения в виде линии -->
+		<tr>
+		  <td colspan=2>
+		    <table width="100%" border="0" cellspacing="0" cellpadding="0"  background="images/2.gif">
+               <tr> 
+                 <td width="50%"><div align="left"><img src="images/1.gif" width="27" height="17"></div>
+	             </td>
+                 <td width="50%">
+                 <div align="right"><img src="images/2.gif" width="27" height="17"></div>
+                 </td>
+               </tr>
+            </table>
+		  </td>
+		</tr>	  
+	    <tr>
+		  <td colspan=2>
+		    <table width="100%" border="0" cellspacing="0" cellpadding="0" height="13" background="images/3.gif">
+               <tr> 
+                 <td></td>
+               </tr>
+            </table>
+		  </td>
+		</tr>	  
+	  <!--Конец HTML-кода конечного изображения в виде линии -->
+	  </table>
+	</td>
+  </tr>
+</table>
+
+</body>
+</html>
+
+

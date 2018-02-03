@@ -1,0 +1,283 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+	<title>VHDL</title>
+	<META content="text/html; charset=windows-1251" http-equiv=Content-Type>
+<style type="text/css">
+<!--
+a
+{
+text-decoration:none;
+font-size: 12px;
+}
+a:link {
+	color: #005db6;/*themecolour5;*/
+}
+a:visited {
+	color: #3c9bf7;
+}
+a:link:hover {
+	color: #0a8f23;/*themecolour1;*/
+}
+#r
+{
+color:#009933;
+font-family:Arial;
+position:relative; 
+font-size: 12px;
+top:0px;
+text-align:center;
+padding-left:15px;
+padding-right:400px;
+}
+p{
+font-family:Arial;
+position:relative; 
+font-size: 12px;
+top:0px;
+color:#003399;
+padding-left:15px;
+padding-right:10px;
+padding-bottom:19px;
+text-align:justify;
+}
+h1 {
+	font-family:Arial;
+	font-size: 16px;
+	color: #005db6;/*themecolour5;*/
+	margin-top: 0px;
+	margin-bottom: 3px;
+	text-align:justify; 
+	padding-left:10px; 
+	position:relative; 
+	top:0px
+}
+#c {text-align:justify; 
+	padding-left:10px; 
+	position:relative; 
+	top:0px
+	}
+.header2, h2
+{
+padding-left: 20px; 
+color:#005db6; 
+background: #DBEAF5; 
+font-weight: bold; 
+font-family: Tahoma, Verdana; 
+font-size: 12px;
+}
+ul {
+	margin-top: 0px;
+	margin-bottom: 0px;
+	list-style-image: url(images/bullet.gif); 
+    color:#005db6; 
+    font-family: Arial, Tahoma, Verdana; 
+    font-size: 12px;
+}
+-->
+</style>
+
+<!--JavaSсript для регулировки размера страницы от расширения экрана -->
+
+<SCRIPT LANGUAGE "JavaScript" TYPE="text/javascript">
+var img1=new Image(); img1.src='images/buttom_01.gif'
+var img2=new Image(); img2.src='images/buttom_1_over.gif'
+</SCRIPT>
+<script language="JavaScript">
+var s=screen;
+width=s.width;
+var tabl = 100;
+var w = width;
+if ( w >= 1024 ) { tabl = 95; }
+if ( w >= 1152 ) { tabl = 85; }
+if ( w >= 1280 ) { tabl = 75; }
+document.write('<table width='+tabl+'% height=100%>');
+</script>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" leftmargin="0" rightmargin="0" topmargin="0" marginwidth="0">
+
+<!--Начало HTML-кода заголовка -->
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" height="100" background="images/bg.gif">
+  <tr> 
+    <td width="50%"><div align="left"><img src="images/top.gif" width="274" height="100"></div>
+	</td>
+    <td width="50%">
+      <div align="right"><img src="images/top_graphic.gif" width="400" height="100"></div>
+    </td>
+  </tr>
+</table>
+
+<!--Конец HTML-кода заголовка -->
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" height="100">
+  <tr>
+    
+	<!--Начало HTML-кода menu -->
+	
+	<td width="7%" valign="top" style="background-image: url(images/b_navbar_bg.gif)">
+	  <table width=135 border=0 cellpadding=0 cellspacing=0>
+       <tr> 
+         <td colspan=4> <img src="images/menu_1.gif" width=135 height=23></td>
+       </tr>
+      <tr> 
+		  <td> <img src="images/menu_02_1.gif" width=11 height=32></td>
+         <td> <img src="images/menu_02_2_top.gif" width=3 height=32></td>
+		 <td> <a href="index.html"> <IMG SRC="images/button_01.gif" WIDTH="118" HEIGHT="32" BORDER="0"  onMOUSEoVER="this.src='images/button_01_over.gif'"
+<IMG SRC="images/button_01.gif" WIDTH="118" HEIGHT="32" BORDER=0"  onMouseOver="this.src='images/button_01_over.gif'" onMouseOut="this.src='images/button_01.gif'"></a></td>
+         <td> <img src="images/menu_04_1.gif" width=3 height=32></td>
+       </tr>
+	  
+	  <tr>
+		  <td rowspan=2>              <!--Для добавления или уменьшения  количества кнопок в меню изменить это число
+		                                по формуле: Rowspan=Число_кнопок_в_меню - 2   
+								      -->
+		    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+               <tr> 
+                 <td>
+	             </td>
+               </tr>
+            </table>
+		  </td>
+		  <td colspan=3>
+		    <table width="100%" height="100%" border="0" cellspacing="0" cellpadding="0">
+               <tr> 
+	          <td> <a href="overview.html"> <IMG SRC="images/button_02.gif" WIDTH="124" HEIGHT="32" BORDER="0"  onMOUSEoVER="this.src='images/button_02_over.gif'"
+<IMG SRC="images/button_02.gif" WIDTH="124" HEIGHT="32" BORDER=0"  onMouseOver="this.src='images/button_02_over.gif'" onMouseOut="this.src='images/button_02.gif'"></a></td>   
+			   </tr>
+            </table>
+		  </td>
+	  </tr>	  
+	  
+	  <tr>  <!--Начало HTML-кода кнопки -->
+		  <td colspan=3>
+		    <table width="100%" height="100%" border="0" cellspacing="0" cellpadding="0">
+               <tr> 
+	           <td> <a href="map.html"> <IMG SRC="images/button_03.gif" WIDTH="124" HEIGHT="32" BORDER="0"  onMOUSEoVER="this.src='images/button_03_over.gif'"
+<IMG SRC="images/button_03.gif" WIDTH="124" HEIGHT="32" BORDER=0"  onMouseOver="this.src='images/button_03_over.gif'" onMouseOut="this.src='images/button_03.gif'"></a></td>     
+			   </tr>
+            </table>
+		  </td>
+	  </tr>	 <!--Конец HTML-кода кнопки -->
+	  
+	  <!--Чтобы добавить кнопку нужно скопировать выше написаный код, между обозначениями  
+	  "начало" и "конец" HTML-кода кнопки и вставить его после этих комментариев-->
+	  
+	  
+	  <tr> 
+		  <td> <img src="images/menu_02_1.gif" width=11 height=32></td>
+         <td> <img src="images/menu_02_3.gif" width=3 height=32></td>
+		 <td> <a href="author.html"> <IMG SRC="images/button_04.gif" WIDTH="118" HEIGHT="32" BORDER="0"  onMOUSEoVER="this.src='images/button_04_over.gif'"
+<IMG SRC="images/button_04.gif" WIDTH="118" HEIGHT="32" BORDER=0"  onMouseOver="this.src='images/button_04_over.gif'" onMouseOut="this.src='images/button_04.gif'"></a></td>
+         <td> <img src="images/menu_04_1.gif" width=3 height=32></td>
+       </tr>
+	  <tr> 
+		  <td colspan=2> <img src="images/menu_02_2.gif" width=11 height=38></td>
+	     <td> <img src="images/menu_09.gif" width=118 height=38></td>
+	     <td> <img src="images/menu_04_2.gif" width=3 height=38></td>
+	   </tr> 
+	  </table>
+	</td>
+   
+   <!--Конец HTML-кода menu -->
+   
+    <td width="97%">
+	  <table border=0  width="100%" cellspacing="0" cellpadding="0">
+	    <!--Начало HTML-кода основного текста -->
+		<tr><td class="header2" colspan=2>Описание структуры системы: компоненты и конфигурации.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="overview.html">Глава:8</a>><a href="8_4_1.html">Часть:4</a>>Страница:3</td></tr>
+		<tr>
+          <td height="314"  style="position:relative; top:0px">
+		  <script language="JavaScript">
+         var s=screen;
+height=s.height;
+var tabl = 300;
+var h = height;
+if ( h >= 768 ) { tabl = 450; }
+document.write('<td height='+tabl+'px>');
+</script><br>  <DIV ALIGN="center"><a href="8_4_2.html">< НАЗАД ></a>  <a href="8_4_4.html">< ВПЕРЕД ></a></div>
+		
+		  <ul >
+		 <li><a href="8_4_1.html">Введение в компоненты.</a></li>
+		 <li><a href="8_4_2.html">Спецификация компонентов.</a></li>
+		 <li><a href="8_4_3.html">Реализация компонентов.</a></li>
+		 <li><a href="8_4_4.html">Конфигурация</a></li>
+
+		
+		 </ul><br><br>
+		  <div id="r">&nbsp;&nbsp;&nbsp;&nbsp;Реализация компонентов..</div> 
+		  <p>
+		  <img name="dim"align="right" src="images/image8_4_3.jpg">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Реализация компонента очень похожа на реализацию обьекта ,она имеет следующие основные элементы:
+<br><br>
+
+<style type="text/css">
+<!--
+ul {
+	margin-top: 0px;
+	margin-bottom: 0px;
+	list-style-image: url(images/bullet.gif); 
+    color:#003399; 
+    font-family: Arial, Tahoma, Verdana; 
+    font-size: 12px;
+}
+-->
+</style>
+
+
+
+<br><br>
+<ul><li>двоеточие ставится после метки реализации;эта метка принудительна;
+
+
+</li><li>дополнительный компонент ключевое слово,которое указывает ,что это-реализация компонентов,которая должна использоваться для ясности кода.
+
+
+</li><li>пункт универсальной карты  обеспечивает  значения для generics.
+Generics может быть  без значения,  в таких случаях фактическое значение может быть определено в пункте универсальной  карты.Если компонент определен без generics,этот пункт может быть пропущен.
+</li><li>порт отображает запись,которая определена тем же способом ,как в случае прямых реализаций.</li><ul>
+
+
+</p><br><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Обратите внимание:нет никакой точки с запятой после имени компонента и пункта универсальной карты.Все выше элементы формируют идинственную инструкцию реализации ,и после нее появляется точка с запятой.</p>  <br><br><br>
+
+<DIV ALIGN="center"><a href="8_4_2.html">< НАЗАД ></a>  <a href="8_4_4.html">< ВПЕРЕД ></a></div>
+					
+		</td>
+		</tr>
+		<!--Конец HTML-кода основного текста -->
+		
+		<!--Начало HTML-кода конечного изображения в виде линии -->
+		<tr>
+		  <td colspan=2>
+		    <table width="100%" border="0" cellspacing="0" cellpadding="0"  background="images/2.gif">
+               <tr> 
+                 <td width="50%"><div align="left"><img src="images/1.gif" width="27" height="17"></div>
+	             </td>
+                 <td width="50%">
+                 <div align="right"><img src="images/2.gif" width="27" height="17"></div>
+                 </td>
+               </tr>
+            </table>
+		  </td>
+		</tr>	  
+	    <tr>
+		  <td colspan=2>
+		    <table width="100%" border="0" cellspacing="0" cellpadding="0" height="13" background="images/3.gif">
+               <tr> 
+                 <td></td>
+               </tr>
+            </table>
+		  </td>
+		</tr>	  
+	  <!--Конец HTML-кода конечного изображения в виде линии -->
+	  </table>
+	</td>
+  </tr>
+</table>
+
+</body>
+</html>
+
+

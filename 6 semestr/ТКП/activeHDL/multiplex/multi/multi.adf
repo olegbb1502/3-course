@@ -1,0 +1,42 @@
+[Project]
+Current Flow=Generic
+VCS=0
+version=1
+Current Config=compile
+
+[Configurations]
+compile=multi
+
+[Library]
+multi=.\multi.LIB
+
+[$LibMap$]
+multi=.
+Active_lib=
+
+[Settings]
+FLOW_TYPE=HDL
+LANGUAGE=VERILOG
+REFRESH_FLOW=1
+FLOWTOOLS=NONE
+FAMILY=
+
+[HierarchyViewer]
+SortInfo=u
+HierarchyInformation=
+ShowHide=ShowTopLevel
+Selected=
+
+[Files]
+/MUX.v=-1
+/MUXX.bde=-1
+/Waveform Editor 1.awf=-1
+
+[Files.Data]
+.\src\MUX.v=Verilog Source Code
+.\src\MUXX.bde=Block Diagram
+.\src\Waveform Editor 1.awf=Waveform File
+
+[file_out:/MUXX.bde]
+/..\compile\muxx.v=-1
+

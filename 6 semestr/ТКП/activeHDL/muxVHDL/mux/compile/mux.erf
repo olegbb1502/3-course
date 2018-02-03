@@ -1,0 +1,4 @@
+MESSAGE "File: .\mux2.vhd" 
+MESSAGE "Compile Entity "mux2"" 
+MESSAGE "Compile Architecture "mux2" of Entity "mux2"" 
+SUCCESS "Compile success 0 Errors 0 Warnings  Analysis time :  16.0 [ms]" 

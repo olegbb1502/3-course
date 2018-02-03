@@ -1,0 +1,285 @@
+V 000041 40 1771 1487329427263 function1
+SYMB0100
+HEADER
+{
+ VARIABLES
+ {
+  #LANGUAGE="VERILOG"
+  #MODIFIED="1487329427"
+ }
+}
+PAGE "" 
+{
+ PAGEHEADER
+ {
+  RECT (0,0,160,160)
+  FREEID 10
+ }
+ 
+ BODY
+ {
+  RECT  1, -1, 0
+  {
+   VARIABLES
+   {
+    #OUTLINE_FILLING="1"
+   }
+   AREA (20,0,140,160)
+  }
+  TEXT  3, 0, 0
+  {
+   TEXT "$#NAME"
+   RECT (25,30,37,54)
+   ALIGN 4
+   MARGINS (1,1)
+   PARENT 2
+  }
+  TEXT  5, 0, 0
+  {
+   TEXT "$#NAME"
+   RECT (110,30,135,54)
+   ALIGN 6
+   MARGINS (1,1)
+   PARENT 4
+  }
+  TEXT  7, 0, 0
+  {
+   TEXT "$#NAME"
+   RECT (25,70,38,94)
+   ALIGN 4
+   MARGINS (1,1)
+   PARENT 6
+  }
+  TEXT  9, 0, 0
+  {
+   TEXT "$#NAME"
+   RECT (25,110,37,134)
+   ALIGN 4
+   MARGINS (1,1)
+   PARENT 8
+  }
+  PIN  2, 0, 0
+  {
+   COORD (0,40)
+   VARIABLES
+   {
+    #DIRECTION="IN"
+    #LENGTH="20"
+    #MDA_RECORD_TOKEN="OTHER"
+    #NAME="a"
+    #NUMBER="0"
+    #VERILOG_TYPE="wire"
+   }
+   LINE  2, 0, 0
+   {
+    POINTS ( (0,0), (20,0) )
+   }
+  }
+  PIN  4, 0, 0
+  {
+   COORD (160,40)
+   VARIABLES
+   {
+    #DIRECTION="INOUT"
+    #LENGTH="20"
+    #MDA_RECORD_TOKEN="OTHER"
+    #NAME="F1"
+    #NUMBER="0"
+    #VERILOG_TYPE="wire"
+   }
+   LINE  2, 0, 0
+   {
+    POINTS ( (-20,0), (0,0) )
+   }
+  }
+  PIN  6, 0, 0
+  {
+   COORD (0,80)
+   VARIABLES
+   {
+    #DIRECTION="IN"
+    #LENGTH="20"
+    #MDA_RECORD_TOKEN="OTHER"
+    #NAME="b"
+    #NUMBER="0"
+    #VERILOG_TYPE="wire"
+   }
+   LINE  2, 0, 0
+   {
+    POINTS ( (0,0), (20,0) )
+   }
+  }
+  PIN  8, 0, 0
+  {
+   COORD (0,120)
+   VARIABLES
+   {
+    #DIRECTION="IN"
+    #LENGTH="20"
+    #MDA_RECORD_TOKEN="OTHER"
+    #NAME="c"
+    #NUMBER="0"
+    #VERILOG_TYPE="wire"
+   }
+   LINE  2, 0, 0
+   {
+    POINTS ( (0,0), (20,0) )
+   }
+  }
+ }
+}
+V 000038 40 2147 1487330417560 func12
+SYMB0100
+HEADER
+{
+ VARIABLES
+ {
+  #LANGUAGE="VERILOG"
+  #MODIFIED="1487330417"
+ }
+}
+PAGE "" 
+{
+ PAGEHEADER
+ {
+  RECT (0,0,160,160)
+  FREEID 12
+ }
+ 
+ BODY
+ {
+  RECT  1, -1, 0
+  {
+   VARIABLES
+   {
+    #OUTLINE_FILLING="1"
+   }
+   AREA (20,0,140,160)
+  }
+  TEXT  3, 0, 0
+  {
+   TEXT "$#NAME"
+   RECT (25,30,37,54)
+   ALIGN 4
+   MARGINS (1,1)
+   PARENT 2
+  }
+  TEXT  5, 0, 0
+  {
+   TEXT "$#NAME"
+   RECT (116,30,135,54)
+   ALIGN 6
+   MARGINS (1,1)
+   PARENT 4
+  }
+  TEXT  7, 0, 0
+  {
+   TEXT "$#NAME"
+   RECT (25,70,38,94)
+   ALIGN 4
+   MARGINS (1,1)
+   PARENT 6
+  }
+  TEXT  9, 0, 0
+  {
+   TEXT "$#NAME"
+   RECT (116,70,135,94)
+   ALIGN 6
+   MARGINS (1,1)
+   PARENT 8
+  }
+  TEXT  11, 0, 0
+  {
+   TEXT "$#NAME"
+   RECT (25,110,37,134)
+   ALIGN 4
+   MARGINS (1,1)
+   PARENT 10
+  }
+  PIN  2, 0, 0
+  {
+   COORD (0,40)
+   VARIABLES
+   {
+    #DIRECTION="IN"
+    #LENGTH="20"
+    #MDA_RECORD_TOKEN="OTHER"
+    #NAME="a"
+    #NUMBER="0"
+    #VERILOG_TYPE="wire"
+   }
+   LINE  2, 0, 0
+   {
+    POINTS ( (0,0), (20,0) )
+   }
+  }
+  PIN  4, 0, 0
+  {
+   COORD (160,40)
+   VARIABLES
+   {
+    #DIRECTION="OUT"
+    #LENGTH="20"
+    #MDA_RECORD_TOKEN="OTHER"
+    #NAME="f1"
+    #NUMBER="0"
+    #VERILOG_TYPE="wire"
+   }
+   LINE  2, 0, 0
+   {
+    POINTS ( (-20,0), (0,0) )
+   }
+  }
+  PIN  6, 0, 0
+  {
+   COORD (0,80)
+   VARIABLES
+   {
+    #DIRECTION="IN"
+    #LENGTH="20"
+    #MDA_RECORD_TOKEN="OTHER"
+    #NAME="b"
+    #NUMBER="0"
+    #VERILOG_TYPE="wire"
+   }
+   LINE  2, 0, 0
+   {
+    POINTS ( (0,0), (20,0) )
+   }
+  }
+  PIN  8, 0, 0
+  {
+   COORD (160,80)
+   VARIABLES
+   {
+    #DIRECTION="OUT"
+    #LENGTH="20"
+    #MDA_RECORD_TOKEN="OTHER"
+    #NAME="f2"
+    #NUMBER="0"
+    #VERILOG_TYPE="wire"
+   }
+   LINE  2, 0, 0
+   {
+    POINTS ( (-20,0), (0,0) )
+   }
+  }
+  PIN  10, 0, 0
+  {
+   COORD (0,120)
+   VARIABLES
+   {
+    #DIRECTION="IN"
+    #LENGTH="20"
+    #MDA_RECORD_TOKEN="OTHER"
+    #NAME="c"
+    #NUMBER="0"
+    #VERILOG_TYPE="wire"
+   }
+   LINE  2, 0, 0
+   {
+    POINTS ( (0,0), (20,0) )
+   }
+  }
+ }
+}

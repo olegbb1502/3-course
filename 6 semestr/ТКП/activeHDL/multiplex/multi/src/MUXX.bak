@@ -1,0 +1,163 @@
+SCHM0103
+HEADER
+{
+  FREEID 15
+  VARIABLES
+  {
+    #LANGUAGE="VERILOG"
+    #MODULE="MUXX"
+    AUTHOR="Unknown"
+    COMPANY="Unknown"
+    CREATIONDATE="2/25/2017"
+    TITLE="MUXX"
+  }
+}
+PAGE ""
+{
+  PAGEHEADER 
+  {
+    PAGESIZE (2200,1700)
+  }
+  BODY
+  {
+    INSTANCE 1,0,0
+    {
+      VARIABLES
+      {
+        #COMPONENT="Input"
+        #LIBRARY="#terminals"
+        #REFERENCE="D0"
+        #SYMBOL="Input"
+      }
+      COORD (440,460)
+    }
+    TEXT 10,0,0
+    {
+      TEXT "$#REFERENCE"
+      RECT (385,684,385,684)
+      MARGINS (1,1)
+      COLOR (0,0,192)
+      ALIGN 2
+      PARENT 9
+    }
+    INSTANCE 11,0,0
+    {
+      VARIABLES
+      {
+        #COMPONENT="Input"
+        #LIBRARY="#terminals"
+        #REFERENCE="A1"
+        #SYMBOL="Input"
+      }
+      COORD (440,760)
+    }
+    TEXT 12,0,0
+    {
+      TEXT "$#REFERENCE"
+      RECT (385,744,385,744)
+      MARGINS (1,1)
+      COLOR (0,0,192)
+      ALIGN 2
+      PARENT 11
+    }
+    INSTANCE 13,0,0
+    {
+      VARIABLES
+      {
+        #COMPONENT="Output"
+        #LIBRARY="#terminals"
+        #REFERENCE="notY"
+        #SYMBOL="Output"
+      }
+      COORD (1780,460)
+    }
+    TEXT 14,0,0
+    {
+      TEXT "$#REFERENCE"
+      RECT (1835,444,1835,444)
+      MARGINS (1,1)
+      COLOR (0,0,192)
+      PARENT 13
+    }
+    TEXT 2,0,0
+    {
+      TEXT "$#REFERENCE"
+      RECT (385,444,385,444)
+      MARGINS (1,1)
+      COLOR (0,0,192)
+      ALIGN 2
+      PARENT 1
+    }
+    INSTANCE 3,0,0
+    {
+      VARIABLES
+      {
+        #COMPONENT="Input"
+        #LIBRARY="#terminals"
+        #REFERENCE="D1"
+        #SYMBOL="Input"
+      }
+      COORD (440,520)
+    }
+    TEXT 4,0,0
+    {
+      TEXT "$#REFERENCE"
+      RECT (385,504,385,504)
+      MARGINS (1,1)
+      COLOR (0,0,192)
+      ALIGN 2
+      PARENT 3
+    }
+    INSTANCE 5,0,0
+    {
+      VARIABLES
+      {
+        #COMPONENT="Input"
+        #LIBRARY="#terminals"
+        #REFERENCE="D2"
+        #SYMBOL="Input"
+      }
+      COORD (440,580)
+    }
+    TEXT 6,0,0
+    {
+      TEXT "$#REFERENCE"
+      RECT (385,564,385,564)
+      MARGINS (1,1)
+      COLOR (0,0,192)
+      ALIGN 2
+      PARENT 5
+    }
+    INSTANCE 7,0,0
+    {
+      VARIABLES
+      {
+        #COMPONENT="Input"
+        #LIBRARY="#terminals"
+        #REFERENCE="D3"
+        #SYMBOL="Input"
+      }
+      COORD (440,640)
+    }
+    TEXT 8,0,0
+    {
+      TEXT "$#REFERENCE"
+      RECT (385,624,385,624)
+      MARGINS (1,1)
+      COLOR (0,0,192)
+      ALIGN 2
+      PARENT 7
+    }
+    INSTANCE 9,0,0
+    {
+      VARIABLES
+      {
+        #COMPONENT="Input"
+        #LIBRARY="#terminals"
+        #REFERENCE="A0"
+        #SYMBOL="Input"
+      }
+      COORD (440,700)
+    }
+  }
+}

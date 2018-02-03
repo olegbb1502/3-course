@@ -1,0 +1,41 @@
+[Project]
+Current Flow=Generic
+VCS=0
+version=1
+Current Config=compile
+
+[Configurations]
+compile=mux
+
+[Library]
+mux=.\mux.LIB
+
+[$LibMap$]
+mux=.
+Active_lib=
+
+[Settings]
+FLOW_TYPE=HDL
+LANGUAGE=VHDL
+REFRESH_FLOW=1
+FLOWTOOLS=NONE
+FAMILY=
+
+[Files]
+/mux1.vhd=-1
+/mux2.bde=-1
+/Waveform Editor 1.awf=-1
+
+[Files.Data]
+.\src\mux1.vhd=VHDL Source Code
+.\src\mux2.bde=Block Diagram
+.\src\Waveform Editor 1.awf=Waveform File
+
+[file_out:/mux2.bde]
+/..\compile\mux2.vhd=-1
+
+[HierarchyViewer]
+SortInfo=u
+HierarchyInformation=mux2|mux2|0 
+ShowHide=ShowTopLevel
+Selected=

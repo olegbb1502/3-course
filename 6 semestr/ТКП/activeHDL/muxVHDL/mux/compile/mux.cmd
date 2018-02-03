@@ -1,0 +1,1 @@
+-w -s "d:\University\Katya\university\6 semestr\“ œ\activeHDL\muxVHDL\library.cfg"  -j "d:\University\Katya\university\6 semestr\“ œ\activeHDL\muxVHDL\mux\projlib.cfg"  -d "d:\University\Katya\university\6 semestr\“ œ\activeHDL\muxVHDL\mux\compile"   -work mux  -dbg -e 100 -2002 "d:\University\Katya\university\6 semestr\“ œ\activeHDL\muxVHDL\mux\compile\mux2.vhd" 

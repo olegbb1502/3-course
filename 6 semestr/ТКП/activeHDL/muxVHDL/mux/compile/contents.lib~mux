@@ -1,0 +1,5 @@
+34
+~E 1 "./src/mux1.vhd" 28 mux
+~A 1 "./src/mux1.vhd" 34 mux_impl
+~E 1 "./compile/mux2.vhd" 25 mux2
+~A 1 "./compile/mux2.vhd" 36 mux2

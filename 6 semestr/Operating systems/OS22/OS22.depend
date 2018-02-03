@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1495648065 source:d:\university\katya\university\6 semestr\operating systems\os22\main.cpp
+	<windows.h>
+	<stdio.h>
+	<psapi.h>
+	<vector>
+	<algorithm>
+

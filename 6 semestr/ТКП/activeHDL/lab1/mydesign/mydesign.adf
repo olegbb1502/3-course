@@ -1,0 +1,44 @@
+[Project]
+Current Flow=Generic
+VCS=0
+version=1
+Current Config=compile
+
+[Configurations]
+compile=mydesign
+
+[Library]
+mydesign=.\mydesign.LIB
+
+[$LibMap$]
+mydesign=.
+Active_lib=
+
+[Settings]
+FLOW_TYPE=HDL
+LANGUAGE=VERILOG
+REFRESH_FLOW=1
+FLOWTOOLS=NONE
+FAMILY=
+
+[HierarchyViewer]
+SortInfo=u
+HierarchyInformation=
+ShowHide=ShowTopLevel
+Selected=
+
+[Files]
+/function1.v=-1
+/test.bde=-1
+/func12.v=-1
+/Waveform Editor 1.awf=-1
+
+[Files.Data]
+.\src\function1.v=Verilog Source Code
+.\src\test.bde=Block Diagram
+.\src\func12.v=Verilog Source Code
+.\src\Waveform Editor 1.awf=Waveform File
+
+[file_out:/test.bde]
+/..\compile\test.v=-1
+

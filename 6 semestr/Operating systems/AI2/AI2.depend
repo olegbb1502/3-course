@@ -1,0 +1,10 @@
+# depslib dependency file v1.0
+1495008865 source:d:\university\katya\university\6 semestr\operating systems\ai2\main.cpp
+	<iostream>
+	<vector>
+	<string>
+	<fstream>
+	<sstream>
+	<math.h>
+	<algorithm>
+

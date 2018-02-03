@@ -1,0 +1,1 @@
+ -erf "d:\University\Katya\university\6 semestr\“ œ\activeHDL\lab1\mydesign\compile\mydesign.erf" -work mydesign -lc "d:/University/Katya/university/6 semestr/“ œ/activeHDL/lab1/library.cfg" -fl "d:/University/Katya/university/6 semestr/“ œ/activeHDL/lab1/mydesign/projlib.cfg" -o "d:/University/Katya/university/6 semestr/“ œ/activeHDL/lab1/mydesign/compile" -l "mydesign"

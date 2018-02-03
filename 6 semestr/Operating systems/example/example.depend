@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1492689023 source:d:\university\katya\university\6 semestr\operating systems\example\main.cpp
+	<pthread.h>
+	<stdio.h>
+	<semaphore.h>
+	<conio.h>
+	<Windows.h>
+	<unistd.h>
+

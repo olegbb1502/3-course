@@ -1,0 +1,38 @@
+timestamp=1488357868939
+
+[$root]
+A/$root=22|""|0|1*25044
+B/$root=3*6162
+
+[MUX]
+A/MUX=22|./src/mux.v|25|1*26890
+B/MUX=3*6298
+P/~emb=241,400,651,746
+R=./src/mux.v|25
+S/mux=S/MUX 40|0|2*0
+
+[MUXX]
+A/MUXX=24|.\src\MUXX.bde|10000|1*29511
+B/MUXX=3*7601
+P/~emb=243,413,613,824
+R=./compile/muxx.v|30
+
+[~A]
+LastVerilogToplevel=MUXX
+ModifyID=151
+Version=73
+d:/University/Katya/university/6 semestr/“ œ/activeHDL/multiplex/multi/compile/MUXX.v=0*5457*6014
+d:/University/Katya/university/6 semestr/“ œ/activeHDL/multiplex/multi/src/MUX.v=0*7663*8215
+d:/University/Katya/university/6 semestr/“ œ/activeHDL/multiplex/multi/src/mux.v_muxx.v=0*14247*14998
+
+[~MFT]
+0=31|0multi.mgf|14998|3561
+1=24|1multi.mgf|29511|25044
+2=0|2multi.mgf|0|0
+3=24|3multi.mgf|7601|6162
+
+[~U]
+$root=12|0*12179|
+MUX=12|0*12291||0x83
+MUXX=12|0*13262||0x90
+

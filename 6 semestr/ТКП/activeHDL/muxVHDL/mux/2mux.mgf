@@ -1,0 +1,184 @@
+V 000035 40 2628 1488358086259 mux
+SYMB0100
+HEADER
+{
+ VARIABLES
+ {
+  #HDL_ENTRIES=
+"library IEEE;\n"+
+"use ieee.std_logic_1164.all;"
+  #LANGUAGE="VHDL"
+  #MODIFIED="1488358086"
+ }
+}
+PAGE "" 
+{
+ PAGEHEADER
+ {
+  RECT (0,0,160,240)
+  FREEID 14
+ }
+ 
+ BODY
+ {
+  RECT  1, -1, 0
+  {
+   VARIABLES
+   {
+    #OUTLINE_FILLING="1"
+   }
+   AREA (20,0,140,240)
+  }
+  TEXT  3, 0, 0
+  {
+   TEXT "$#NAME"
+   RECT (25,30,37,54)
+   ALIGN 4
+   MARGINS (1,1)
+   PARENT 2
+  }
+  TEXT  5, 0, 0
+  {
+   TEXT "$#NAME"
+   RECT (61,30,135,54)
+   ALIGN 6
+   MARGINS (1,1)
+   PARENT 4
+  }
+  TEXT  7, 0, 0
+  {
+   TEXT "$#NAME"
+   RECT (25,70,38,94)
+   ALIGN 4
+   MARGINS (1,1)
+   PARENT 6
+  }
+  TEXT  9, 0, 0
+  {
+   TEXT "$#NAME"
+   RECT (25,110,38,134)
+   ALIGN 4
+   MARGINS (1,1)
+   PARENT 8
+  }
+  TEXT  11, 0, 0
+  {
+   TEXT "$#NAME"
+   RECT (25,150,33,174)
+   ALIGN 4
+   MARGINS (1,1)
+   PARENT 10
+  }
+  TEXT  13, 0, 0
+  {
+   TEXT "$#NAME"
+   RECT (25,190,76,214)
+   ALIGN 4
+   MARGINS (1,1)
+   PARENT 12
+  }
+  PIN  2, 0, 0
+  {
+   COORD (0,40)
+   VARIABLES
+   {
+    #DIRECTION="IN"
+    #LENGTH="20"
+    #MDA_RECORD_TOKEN="OTHER"
+    #NAME="c"
+    #NUMBER="0"
+    #VHDL_TYPE="STD_LOGIC"
+   }
+   LINE  2, 0, 0
+   {
+    POINTS ( (0,0), (20,0) )
+   }
+  }
+  PIN  4, 0, 0
+  {
+   COORD (160,40)
+   VARIABLES
+   {
+    #DIRECTION="OUT"
+    #LENGTH="20"
+    #MDA_RECORD_TOKEN="OTHER"
+    #NAME="mux_out"
+    #NUMBER="0"
+    #VHDL_TYPE="STD_LOGIC"
+   }
+   LINE  2, 0, 0
+   {
+    POINTS ( (-20,0), (0,0) )
+   }
+  }
+  PIN  6, 0, 0
+  {
+   COORD (0,80)
+   VARIABLES
+   {
+    #DIRECTION="IN"
+    #LENGTH="20"
+    #MDA_RECORD_TOKEN="OTHER"
+    #NAME="d"
+    #NUMBER="0"
+    #VHDL_TYPE="STD_LOGIC"
+   }
+   LINE  2, 0, 0
+   {
+    POINTS ( (0,0), (20,0) )
+   }
+  }
+  PIN  8, 0, 0
+  {
+   COORD (0,120)
+   VARIABLES
+   {
+    #DIRECTION="IN"
+    #LENGTH="20"
+    #MDA_RECORD_TOKEN="OTHER"
+    #NAME="e"
+    #NUMBER="0"
+    #VHDL_TYPE="STD_LOGIC"
+   }
+   LINE  2, 0, 0
+   {
+    POINTS ( (0,0), (20,0) )
+   }
+  }
+  PIN  10, 0, 0
+  {
+   COORD (0,160)
+   VARIABLES
+   {
+    #DIRECTION="IN"
+    #LENGTH="20"
+    #MDA_RECORD_TOKEN="OTHER"
+    #NAME="f"
+    #NUMBER="0"
+    #VHDL_TYPE="STD_LOGIC"
+   }
+   LINE  2, 0, 0
+   {
+    POINTS ( (0,0), (20,0) )
+   }
+  }
+  PIN  12, 0, 0
+  {
+   COORD (0,200)
+   VARIABLES
+   {
+    #DIRECTION="IN"
+    #DOWNTO="1"
+    #LENGTH="20"
+    #MDA_RECORD_TOKEN="OTHER"
+    #NAME="s(1:0)"
+    #NUMBER="0"
+    #VHDL_TYPE="STD_LOGIC_VECTOR"
+   }
+   LINE  2, 0, 0
+   {
+    POINTS ( (0,0), (20,0) )
+   }
+  }
+ }
+}

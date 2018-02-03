@@ -1,0 +1,17 @@
+elbread.dll ver. 1.0.5.375 Wed Mar 01 11:03:40 2017
+
+
+--------------------------------
+Entity  | Architecture | Library
+--------------------------------
+mux2    | mux2         | mux
+mux     | mux_impl     | mux
+--------------------------------
+
+-------------------------
+Package         | Library
+-------------------------
+standard        | std
+textio          | std
+std_logic_1164  | ieee
+-------------------------

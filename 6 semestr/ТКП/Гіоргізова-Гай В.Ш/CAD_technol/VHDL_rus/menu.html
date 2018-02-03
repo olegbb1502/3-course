@@ -1,0 +1,379 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+	<title>VHDL</title>
+<script LANGUAGE="Javascript">
+
+ // Script (c) 1999 by Patrick of PureLogic Web Technologies Holland
+ // Homepage : http://home.kabelfoon.nl/~patricks/purelogic
+
+ var iSelectedItem;	// Store the previously selected header id in array (to prevent double clicking a header)
+ var bPlaying;		// indicates whether the animation is playing
+ var iMoveBackX;	// Stores the x coordinate to move back to when image is playing return move
+			// This is needed cause images can have different width
+ var iMoveRight;	// x coordinate of animation move to the right
+ var iMoveLeft;		// x coordinate of animation move to the left
+ var sMenuItem;		// Menu item to move
+ var sPrevMenuItem;	// Menu item which was move before current move (needed for move back)
+ var bRightDone;	// indicates if the animation to the right is done
+ var bLeftDone;		// indicates if the animation to the left is done
+ var moveArray = new Array();	// Stores the headers to animate
+ var splitterArray = new Array(); // Stores which header is up and which is down
+ var moveItems;		// nr of headers to animate
+ var iMaxTop;	
+ var objShowAfterAnimation;	// which div needs to be shown before animation
+ var objHideBeforeAnimation;	// which div needs to be show after animation
+
+ var iSpeed=35;			// speed of the header movement
+ var iNrOfItemsInArray = 4;	// number of headers
+ var iMinLeft = 20;		// x coordinate to move to for menu items
+ var iSubSpeed=15;		// speed of the submenu items
+ var bInitDone = false;		// Make sure everything is intialised before user clicks
+
+ function initializeVariables()
+ {
+  var i;
+  
+  bRightDone = true;
+  bLeftDone = true;
+  bPlaying = false;
+  sPrevMenuItem="";
+  sPrevHeader = null;
+  objHideBeforeAnimation="";
+  
+  for (i=1;i<=iNrOfItemsInArray;i++)
+  {
+   splitterArray[i]="0";
+  }
+  bInitDone =true;
+ }
+ 
+ 
+ function confirmDoneMove()
+ {
+  if ((bRightDone) && (bLeftDone))
+  {
+    // animation to the left and to the right are done
+    iMoveBackX = iMoveBack;
+    sPrevMenuItem=sMenuItem;
+  }
+ }
+ 
+ function moveMenuItemBack()
+ {
+  // animate the menuitem back to it's original position
+
+  bLeftDone = false;
+  iMoveLeft+=iSubSpeed;
+  
+  if (iMoveLeft<iMoveBackX) 
+  { 
+   document.images(sPrevMenuItem).style.left = iMoveLeft;
+   setTimeout('moveMenuItemBack()',20);
+  }
+  else
+  {
+   document.images(sPrevMenuItem).style.left = iMoveBackX;
+   bLeftDone = true; 
+   confirmDoneMove()
+  }
+
+ }
+ function moveMenuItem(sUrl)
+{
+ // animate the menuitems to the left (to the iMinLeft value)
+
+ bRightDone = false;
+ iMoveRight-=iSubSpeed;
+
+ 
+ if (iMoveRight>=iMinLeft)  {
+  document.images(sMenuItem).style.left = iMoveRight;
+  save_sUrl=sUrl;
+  setTimeout('moveMenuItem(save_sUrl)',20);
+ }
+ else
+ {
+  document.images(sMenuItem).style.left = iMinLeft;
+  bRightDone = true;
+  confirmDoneMove();
+location.href=sUrl; //открыть страничку в этом же окне
+ }
+}
+
+
+
+ function newPageSelect(sUrl,sMoveMenuItem)
+ {
+  // Menu item was selected. Here you can add our own code what to do next when the
+  // menu item sMoveMenuItem was selected
+  // sUrl contains the url to move to
+  var s;
+  var iTempLeft;
+  if ((sPrevMenuItem != sMoveMenuItem) && ((bRightDone) && (bLeftDone)))
+  {
+   bPlaying = true;
+   if (sPrevMenuItem!="")
+   {
+     iTempLeft=""
+     iTempLeft=document.images(sPrevMenuItem).style.left;
+     iMoveLeft=eval(iTempLeft.substring(0,iTempLeft.length-2));
+     moveMenuItemBack()
+   }
+   sMenuItem=sMoveMenuItem;
+   s=document.images(sMenuItem).style.left + "";
+   iMoveRight = eval(s.substring(0,s.length-2));
+   iMoveBack = iMoveRight;
+   moveMenuItem(sUrl);
+   bPlaying = false;
+  }   
+ } 
+ 
+ 
+ function animateHeadersDown()
+ {
+  var s;
+  var iStep;
+
+  // Move headers down (header are in the moveArray array)
+
+  for (i=0;i<=moveItems;i++)
+  {
+    s = document.images(moveArray[moveItems]).style.top + "";
+    s = s.substring(0,s.length-2);
+
+    if ((eval(s)-10)>=iMaxTop)
+     iStep = iMaxTop - eval(s) ;
+    else
+     iStep = iSpeed;
+
+
+    s = document.images(moveArray[i]).style.top + "";
+    s = s.substring(0,s.length-2);
+    document.images(moveArray[i]).style.top=eval(s) + iStep;
+  }
+
+  s = document.images(moveArray[moveItems]).style.top + "";
+  s = s.substring(0,s.length-2);
+  
+  if ((eval(s)<iMaxTop) && (moveItems!=-1))
+   setTimeout("animateHeadersDown()",10)
+  else
+  {
+   for (i=0;i<=objShowAfterAnimation.children.length-1;i++)
+   {
+   objShowAfterAnimation.children(i).filters.blendTrans.apply();
+   objShowAfterAnimation.children(i).style.visibility="visible";
+   objShowAfterAnimation.children(i).filters.blendTrans.play();
+   }
+  }
+ }
+
+function animateHeadersUp()
+ {
+  var s;
+  var iStep;
+
+  // Move headers up (header are in the moveArray array)
+  
+  for (i=0;i<=moveItems;i++)
+  {
+    s = document.images(moveArray[i]).style.top + "";
+    s = s.substring(0,s.length-2);
+
+    if ((eval(s)-10)<=iMaxTop)
+     iStep = eval(s) - iMaxTop ;
+    else
+     iStep = iSpeed;
+
+    document.images(moveArray[i]).style.top=eval(s) - iStep;
+  }
+ 
+  s = document.images(moveArray[moveItems]).style.top + "";
+  s = s.substring(0,s.length-2);
+  if (eval(s)>iMaxTop)
+   setTimeout("animateHeadersUp()",10)
+  else
+  {
+   for (i=0;i<=objShowAfterAnimation.children.length-1;i++)
+   {
+   objShowAfterAnimation.children(i).filters.blendTrans.apply();
+   objShowAfterAnimation.children(i).style.visibility="visible";
+   objShowAfterAnimation.children(i).filters.blendTrans.play();
+   }
+  }
+ }
+
+ function openMenu(nrOfItems,idOfItemInArray,objToShow)
+ {
+  var s ;
+  var bFound;
+  var iIndex;
+
+  if (bInitDone)
+  {
+   if (iSelectedItem!=idOfItemInArray)
+   {
+ 
+   if (objHideBeforeAnimation!="")
+  
+   {
+    for (i=0;i<=objHideBeforeAnimation.children.length-1;i++)
+    {
+     objHideBeforeAnimation.children(i).filters.blendTrans.apply();
+     objHideBeforeAnimation.children(i).style.visibility="hidden";
+     objHideBeforeAnimation.children(i).filters.blendTrans.play();
+    }
+ 
+   }
+   iIndex = eval(idOfItemInArray);
+   objHideBeforeAnimation = objToShow;
+   objShowAfterAnimation = objToShow;
+
+   moveItems=-1;
+   moveArray.length=0; // Empty array before using it
+   iIndex = eval(idOfItemInArray);
+   bFound = false;
+
+
+   if (splitterArray[iIndex]==0)
+   {
+    // item is up
+ 
+    iIndex++;
+    while ((iIndex<=iNrOfItemsInArray) && (!bFound))
+    {
+     if (splitterArray[iIndex]==1) // Zoek eerste item dat beneden staat
+      bFound = true;
+     else
+      iIndex++;
+    } 
+   
+    if (bFound)
+    {
+      s = document.images("split" + iIndex).style.top + "";
+      s = s.substring(0,s.length-2);
+      iMaxTop = eval(s) - 30;
+    }
+    else
+     iMaxTop = 243;
+ 
+    iIndex = eval(idOfItemInArray);
+    iIndex++; // Start at next item
+    while (iIndex<=iNrOfItemsInArray)
+    {
+     if (splitterArray[iIndex]==0)
+     {
+      moveItems++;
+ 
+      moveArray[moveItems] = "split" + iIndex;
+      splitterArray[iIndex]=1;
+     }
+     iIndex++;
+    }
+ 
+    animateHeadersDown();
+    
+   }
+   else
+   {
+    // selected item is up
+    while ((iIndex>=0) && (!bFound))
+    {
+     if (splitterArray[iIndex]==0) // Zoek eerste item dat omhoog staat
+      bFound = true;
+     else
+      iIndex--;
+    } 
+   
+    if (bFound)
+    {
+      s = document.images("split" + iIndex).style.top + "";
+      s = s.substring(0,s.length-2);
+      iMaxTop = eval(s) + 30;
+    }
+    else
+     iMaxTop = 190;
+     
+    iIndex = eval(idOfItemInArray);
+    while (iIndex>=0)
+    {
+     if (splitterArray[iIndex]==1)
+     {
+      moveItems++;
+ 
+      moveArray[moveItems] = "split" + iIndex;
+      splitterArray[iIndex]=0;
+     }
+     iIndex--;
+    }
+
+    animateHeadersUp();
+   }
+   iSelectedItem=idOfItemInArray;
+   }
+  }
+ }
+</script>
+</head>
+
+<body onLoad="initializeVariables()">
+<img STYLE="POSITION: absolute;TOP : 35;LEFT:1" SRC="header1.gif" ID="split1" BORDER="0"  onClick="openMenu(3,1,CompanyInfo)" onMouseOver = "style.cursor='hand';">  
+  <div ID="CompanyInfo">
+   <img STYLE="visibility:hidden;filter: blendTrans(duration=0.2);POSITION: absolute;TOP : 65;LEFT:69" SRC="item1.gif" ID="SubMenu01" BORDER="0" onClick="newPageSelect('chapter_overview.html',this.id)" onMouseOver="style.cursor='hand';" alt="Введение.   Обзор содержания данного учебника.   Основные сведения о языке Verilog HDL">
+   <img STYLE="visibility:hidden;filter: blendTrans(duration=0.2);POSITION: absolute;TOP : 85;LEFT:69" SRC="item2.gif" ID="SubMenu02" BORDER="0" onClick="newPageSelect('nodemo.htm',this.id)" onMouseOver="style.cursor='hand';" alt="В данном разделе обсуждаются   традиционные методы моделирования,   такие как моделирование с   использованием Буллевых уравнений и   более универсальное автоматизированное   схематическое моделирование. Ранние   версии языка описания   аппаратных средств ЭВМ - лучшее,   но не идеальное решение.">
+   <img STYLE="visibility:hidden;filter: blendTrans(duration=0.2);POSITION: absolute;TOP : 107;LEFT:69" SRC="item3.gif" ID="SubMenu03" BORDER="0" onClick="newPageSelect('nodemo.htm',this.id)" onMouseOver="style.cursor='hand';" alt="Введение в Verilog HDL, его   появление, области применения,   преимущества и недостатки">
+  </div>
+  <img STYLE="POSITION: absolute;TOP : 65;LEFT:1" SRC="images/header2.gif" ID="split2" BORDER="0"  onClick="openMenu(3,2,AanpakInfo)" onMouseOver = "style.cursor='hand';">
+  <div ID="AanpakInfo">
+   <img STYLE="visibility:hidden;filter: blendTrans(duration=0.2);POSITION: absolute;TOP : 95;LEFT:69" SRC="images/item1.gif" ID="SubMenu11" BORDER="0" onClick="newPageSelect('nodemo.htm',this.id)" onMouseOver="style.cursor='hand';">
+   <img STYLE="visibility:hidden;filter: blendTrans(duration=0.2);POSITION: absolute;TOP : 115;LEFT:69" SRC="images/item2.gif" ID="SubMenu12" BORDER="0" onClick="newPageSelect('nodemo.htm',this.id)" onMouseOver="style.cursor='hand';">  
+   <img STYLE="visibility:hidden;filter: blendTrans(duration=0.2);POSITION: absolute;TOP : 135;LEFT:69" SRC="images/item3.gif" ID="SubMenu13" BORDER="0" onClick="newPageSelect('nodemo.htm',this.id)" onMouseOver="style.cursor='hand';">
+   <img STYLE="visibility:hidden;filter: blendTrans(duration=0.2);POSITION: absolute;TOP : 155;LEFT:69" SRC="images/item4.gif" ID="SubMenu14" BORDER="0" onClick="newPageSelect('nodemo.htm',this.id)" onMouseOver="style.cursor='hand';" >
+  </div>
+  <img STYLE="POSITION: absolute;TOP : 95;LEFT:0" SRC="images/header3.gif" ID="split3" BORDER="0" onClick="openMenu(3,3,DemoInfo)" onMouseOver = "style.cursor='hand';">
+  <div ID="DemoInfo">
+   <img STYLE="visibility:hidden;filter: blendTrans(duration=0.2);POSITION: absolute;TOP : 125;LEFT:69" SRC="images/item1.gif" ID="SubMenu21" BORDER="0" onClick="newPageSelect('nodemo.htm',this.id)" onMouseOver="style.cursor='hand';" >
+   <img STYLE="visibility:hidden;filter: blendTrans(duration=0.2);POSITION: absolute;TOP : 145;LEFT:69" SRC="images/item2.gif" ID="SubMenu22" onClick="newPageSelect('nodemo.htm',this.id)" onMouseOver="style.cursor='hand';" >
+   <img STYLE="visibility:hidden;filter: blendTrans(duration=0.2);POSITION: absolute;TOP : 165;LEFT:69" SRC="images/item3.gif" ID="SubMenu23" onClick="newPageSelect('nodemo.htm',this.id)" onMouseOver="style.cursor='hand';" >
+   <img STYLE="visibility:hidden;filter: blendTrans(duration=0.2);POSITION: absolute;TOP : 185;LEFT:69" SRC="images/item4.gif" ID="SubMenu24" onClick="newPageSelect('nodemo.htm',this.id)" onMouseOver="style.cursor='hand';" >
+   <img STYLE="visibility:hidden;filter: blendTrans(duration=0.2);POSITION: absolute;TOP : 205;LEFT:69" SRC="images/item5.gif" ID="SubMenu25" onClick="newPageSelect('nodemo.htm',this.id)" onMouseOver="style.cursor='hand';" >
+   <img STYLE="visibility:hidden;filter: blendTrans(duration=0.2);POSITION: absolute;TOP : 225;LEFT:69" SRC="images/item6.gif" ID="SubMenu26" onClick="newPageSelect('nodemo.htm',this.id)" onMouseOver="style.cursor='hand';" >
+  </div>
+  <img STYLE="POSITION: absolute;TOP : 125;LEFT:0" SRC="images/header4.gif" ID="split4" BORDER="0" onClick="openMenu(3,4,Item4)" onMouseOver = "style.cursor='hand';">
+  <div ID="Item4">
+   <img STYLE="visibility:hidden;filter: blendTrans(duration=0.2);POSITION: absolute;TOP : 155;LEFT:69" SRC="images/item1.gif" ID="SubMenu31" BORDER="0" onClick="newPageSelect('nodemo.htm',this.id)" onMouseOver="style.cursor='hand';" >
+   <img STYLE="visibility:hidden;filter: blendTrans(duration=0.2);POSITION: absolute;TOP : 175;LEFT:69" SRC="images/item2.gif" ID="SubMenu32" onClick="newPageSelect('nodemo.htm',this.id)" onMouseOver="style.cursor='hand';" >
+   <img STYLE="visibility:hidden;filter: blendTrans(duration=0.2);POSITION: absolute;TOP : 195;LEFT:69" SRC="images/item3.gif" ID="SubMenu33" onClick="newPageSelect('nodemo.htm',this.id)" onMouseOver="style.cursor='hand';" >
+   <img STYLE="visibility:hidden;filter: blendTrans(duration=0.2);POSITION: absolute;TOP : 215;LEFT:69" SRC="images/item4.gif" ID="SubMenu34" onClick="newPageSelect('nodemo.htm',this.id)" onMouseOver="style.cursor='hand';" >
+   <img STYLE="visibility:hidden;filter: blendTrans(duration=0.2);POSITION: absolute;TOP : 235;LEFT:69" SRC="images/item5.gif" ID="SubMenu35" onClick="newPageSelect('nodemo.htm',this.id)" onMouseOver="style.cursor='hand';" >
+   <img STYLE="visibility:hidden;filter: blendTrans(duration=0.2);POSITION: absolute;TOP : 255;LEFT:69" SRC="images/item6.gif" ID="SubMenu36" onClick="newPageSelect('nodemo.htm',this.id)" onMouseOver="style.cursor='hand';" >
+  </div>
+  <img STYLE="POSITION: absolute;TOP : 155;LEFT:0" SRC="images/header5.gif" ID="split4" BORDER="0" onClick="openMenu(3,4,Item4)" onMouseOver = "style.cursor='hand';">
+  <div ID="Item5">
+   <img STYLE="visibility:hidden;filter: blendTrans(duration=0.2);POSITION: absolute;TOP : 185;LEFT:69" SRC="images/item1.gif" ID="SubMenu31" BORDER="0" onClick="newPageSelect('nodemo.htm',this.id)" onMouseOver="style.cursor='hand';" >
+   <img STYLE="visibility:hidden;filter: blendTrans(duration=0.2);POSITION: absolute;TOP : 205;LEFT:69" SRC="images/item2.gif" ID="SubMenu32" onClick="newPageSelect('nodemo.htm',this.id)" onMouseOver="style.cursor='hand';" >
+   <img STYLE="visibility:hidden;filter: blendTrans(duration=0.2);POSITION: absolute;TOP : 225;LEFT:69" SRC="images/item3.gif" ID="SubMenu33" onClick="newPageSelect('nodemo.htm',this.id)" onMouseOver="style.cursor='hand';" >
+   <img STYLE="visibility:hidden;filter: blendTrans(duration=0.2);POSITION: absolute;TOP : 245;LEFT:69" SRC="images/item4.gif" ID="SubMenu34" onClick="newPageSelect('nodemo.htm',this.id)" onMouseOver="style.cursor='hand';" >
+   <img STYLE="visibility:hidden;filter: blendTrans(duration=0.2);POSITION: absolute;TOP : 265;LEFT:69" SRC="images/item5.gif" ID="SubMenu35" onClick="newPageSelect('nodemo.htm',this.id)" onMouseOver="style.cursor='hand';" >
+   <img STYLE="visibility:hidden;filter: blendTrans(duration=0.2);POSITION: absolute;TOP : 285;LEFT:69" SRC="images/item6.gif" ID="SubMenu36" onClick="newPageSelect('nodemo.htm',this.id)" onMouseOver="style.cursor='hand';" >
+  </div>
+  <img STYLE="POSITION: absolute;TOP : 185;LEFT:0" SRC="images/header6.gif" ID="split4" BORDER="0" onClick="openMenu(3,4,Item4)" onMouseOver = "style.cursor='hand';">
+  <div ID="Item6">
+   <img STYLE="visibility:hidden;filter: blendTrans(duration=0.2);POSITION: absolute;TOP : 215;LEFT:69" SRC="images/item1.gif" ID="SubMenu31" BORDER="0" onClick="newPageSelect('nodemo.htm',this.id)" onMouseOver="style.cursor='hand';" >
+   <img STYLE="visibility:hidden;filter: blendTrans(duration=0.2);POSITION: absolute;TOP : 235;LEFT:69" SRC="images/item2.gif" ID="SubMenu32" onClick="newPageSelect('nodemo.htm',this.id)" onMouseOver="style.cursor='hand';" >
+   <img STYLE="visibility:hidden;filter: blendTrans(duration=0.2);POSITION: absolute;TOP : 255;LEFT:69" SRC="images/item3.gif" ID="SubMenu33" onClick="newPageSelect('nodemo.htm',this.id)" onMouseOver="style.cursor='hand';" >
+   <img STYLE="visibility:hidden;filter: blendTrans(duration=0.2);POSITION: absolute;TOP : 275;LEFT:69" SRC="images/item4.gif" ID="SubMenu34" onClick="newPageSelect('nodemo.htm',this.id)" onMouseOver="style.cursor='hand';" >
+   <img STYLE="visibility:hidden;filter: blendTrans(duration=0.2);POSITION: absolute;TOP : 295;LEFT:69" SRC="images/item5.gif" ID="SubMenu35" onClick="newPageSelect('nodemo.htm',this.id)" onMouseOver="style.cursor='hand';" >
+   <img STYLE="visibility:hidden;filter: blendTrans(duration=0.2);POSITION: absolute;TOP : 315;LEFT:69" SRC="images/item6.gif" ID="SubMenu36" onClick="newPageSelect('nodemo.htm',this.id)" onMouseOver="style.cursor='hand';" >
+  </div>
+</body>
+</html>
+
+
+
+
+
+</body>
+</html>

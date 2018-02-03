@@ -1,0 +1,12 @@
+# depslib dependency file v1.0
+1492696468 source:d:\university\katya\university\6 semestr\operating systems\3\main.cpp
+	<stdio.h>
+	<unistd.h>
+	<stdlib.h>
+	<pthread.h>
+	<semaphore.h>
+	<time.h>
+	<windows.h>
+	<queue>
+	<iostream>
+

@@ -1,0 +1,67 @@
+timestamp=1487756012383
+
+[$root]
+A/$root=22|""|0|1*154510
+B/$root=3*35207
+
+[\\\function1and2 \]
+A/\\\function1and2 \=22|./src/function1and2.v|25|1*64716
+B/\\\function1and2 \=3*13854
+P/~emb=208,372,588,679
+R=./src/function1and2.v|25
+
+[\\\function_1_and_2 \]
+A/\\\function_1_and_2 \=22|./src/function1and2.v|25|1*55440
+B/\\\function_1_and_2 \=3*11151
+P/~emb=214,385,601,692
+R=./src/function1and2.v|25
+
+[func12]
+A/func12=22|./src/func12.v|25|1*161390
+B/func12=3*36198
+P/~emb=184,336,552,643
+R=./src/func12.v|25
+S/func12=40|0|2*1812
+
+[function1]
+A/function1=22|./src/function1.v|25|1*156569
+B/function1=3*35343
+P/~emb=164,316,492,580
+R=./src/function1.v|25
+S/function1=40|0|2*0
+
+[test]
+A/test=24|.\src\test.bde|10000|1*158944
+B/test=3*36063
+P/~emb=180,342,518,701
+R=./compile/test.v|30
+
+[~A]
+LastVerilogToplevel=test
+ModifyID=813
+Version=73
+d:/University/Katya/university/6 semestr/“ œ/activeHDL/lab1/mydesign/compile/test.v=0*10560*11067
+d:/University/Katya/university/6 semestr/“ œ/activeHDL/lab1/mydesign/src/func12.v=0*31730*32235
+d:/University/Katya/university/6 semestr/“ œ/activeHDL/lab1/mydesign/src/func12.v_test.v=0*38723*39379
+d:/University/Katya/university/6 semestr/“ œ/activeHDL/lab1/mydesign/src/function 1 and 2.v=0*12710*13241
+d:/University/Katya/university/6 semestr/“ œ/activeHDL/lab1/mydesign/src/function1.v=0*2771*3263
+d:/University/Katya/university/6 semestr/“ œ/activeHDL/lab1/mydesign/src/function1.v_test.v=0*8411*9038
+d:/University/Katya/university/6 semestr/“ œ/activeHDL/lab1/mydesign/src/function1.v_test.v_func12.v=0*70867*71599
+d:/University/Katya/university/6 semestr/“ œ/activeHDL/lab1/mydesign/src/function1.v_test.v_function 1 and 2.v=0*16467*17209
+d:/University/Katya/university/6 semestr/“ œ/activeHDL/lab1/mydesign/src/function1.v_test.v_function1and2.v=0*22672*23411
+d:/University/Katya/university/6 semestr/“ œ/activeHDL/lab1/mydesign/src/function1and2.v=0*29549*30077
+
+[~MFT]
+0=142|0mydesign.mgf|71599|16403
+1=135|1mydesign.mgf|161390|149238
+2=1|2mydesign.mgf|1812|0
+3=135|3mydesign.mgf|36198|32776
+
+[~U]
+$root=12|0*68183|
+\\\function1and2 \=12|0*28654||0x90
+\\\function_1_and_2 \=12|0*24212||0x90
+func12=12|0*70020||0x83
+function1=12|0*68407||0x93
+test=12|0*69166||0x90
+

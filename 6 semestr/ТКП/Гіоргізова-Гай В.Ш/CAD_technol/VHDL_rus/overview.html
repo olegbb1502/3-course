@@ -1,0 +1,743 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+	<title>VHDL</title>
+	<META content="text/html; charset=windows-1251" http-equiv=Content-Type>
+    <META HTTP-EQUIV="Page-Enter" CONTENT="BlendTrans(Duration=0.5)">
+<style type="text/css">
+<!--
+
+h1 {
+	font-size: 16px;
+	color: #005db6;/*themecolour5;*/
+	margin-top: 0px;
+	margin-bottom: 3px;
+	text-align:justify; 
+	padding-left:10px; 
+	position:relative; 
+	top:0px
+}
+#c {text-align:justify; 
+	padding-left:10px; 
+	position:relative; 
+	top:0px
+	}
+#tooltip{
+background:#66CCFF;
+border:1px solid #666666;
+color:#003399;
+font:menu;
+margin:0px;
+padding:3px 5px;
+position:absolute;
+visibility:hidden
+}
+.header2, h2
+{
+padding-left: 20px; 
+color:#005db6; 
+background: #DBEAF5; 
+font-weight: bold; 
+font-family: Tahoma, Verdana; 
+font-size: 14px;
+}
+-->
+</style>
+
+<!--JavaSсript для регулировки размера страницы от расширения экрана -->
+
+
+<script language="JavaScript">
+var s=screen;
+width=s.width;
+var tabl = 100;
+var w = width;
+if ( w >= 1024 ) { tabl = 95; }
+if ( w >= 1152 ) { tabl = 85; }
+if ( w >= 1280 ) { tabl = 75; }
+document.write('<table width='+tabl+'% height=100%>');
+</script>
+<script LANGUAGE="Javascript">
+
+ // Script (c) 1999 by Patrick of PureLogic Web Technologies Holland
+ // Homepage : http://home.kabelfoon.nl/~patricks/purelogic
+
+ var iSelectedItem;	// Store the previously selected header id in array (to prevent double clicking a header)
+ var bPlaying;		// indicates whether the animation is playing
+ var iMoveBackX;	// Stores the x coordinate to move back to when image is playing return move
+			// This is needed cause images can have different width
+ var iMoveRight;	// x coordinate of animation move to the right
+ var iMoveLeft;		// x coordinate of animation move to the left
+ var sMenuItem;		// Menu item to move
+ var sPrevMenuItem;	// Menu item which was move before current move (needed for move back)
+ var bRightDone;	// indicates if the animation to the right is done
+ var bLeftDone;		// indicates if the animation to the left is done
+ var moveArray = new Array();	// Stores the headers to animate
+ var splitterArray = new Array(); // Stores which header is up and which is down
+ var moveItems;		// nr of headers to animate
+ var iMaxTop;	
+ var objShowAfterAnimation;	// which div needs to be shown before animation
+ var objHideBeforeAnimation;	// which div needs to be show after animation
+
+ var iSpeed=35;			// speed of the header movement
+ var iNrOfItemsInArray = 9;	// number of headers
+ var iMinLeft = 20;		// x coordinate to move to for menu items
+ var iSubSpeed=15;		// speed of the submenu items
+ var bInitDone = false;		// Make sure everything is intialised before user clicks
+
+ function initializeVariables()
+ {
+  var i;
+  
+  bRightDone = true;
+  bLeftDone = true;
+  bPlaying = false;
+  sPrevMenuItem="";
+  sPrevHeader = null;
+  objHideBeforeAnimation="";
+  
+  for (i=1;i<=iNrOfItemsInArray;i++)
+  {
+   splitterArray[i]="0";
+  }
+  bInitDone =true;
+ }
+ 
+ 
+ function confirmDoneMove()
+ {
+  if ((bRightDone) && (bLeftDone))
+  {
+    // animation to the left and to the right are done
+    iMoveBackX = iMoveBack;
+    sPrevMenuItem=sMenuItem;
+  }
+ }
+ 
+ function moveMenuItemBack()
+ {
+  // animate the menuitem back to it's original position
+
+  bLeftDone = false;
+  iMoveLeft+=iSubSpeed;
+  
+  if (iMoveLeft<iMoveBackX) 
+  { 
+   document.images(sPrevMenuItem).style.left = iMoveLeft;
+   setTimeout('moveMenuItemBack()',20);
+  }
+  else
+  {
+   document.images(sPrevMenuItem).style.left = iMoveBackX;
+   bLeftDone = true; 
+   confirmDoneMove()
+  }
+
+ }
+ function moveMenuItem(sUrl)
+{
+ // animate the menuitems to the left (to the iMinLeft value)
+
+ bRightDone = false;
+ iMoveRight-=iSubSpeed;
+
+ 
+ if (iMoveRight>=iMinLeft)  {
+  document.images(sMenuItem).style.left = iMoveRight;
+  save_sUrl=sUrl;
+  setTimeout('moveMenuItem(save_sUrl)',20);
+ }
+ else
+ {
+  document.images(sMenuItem).style.left = iMinLeft;
+  bRightDone = true;
+  confirmDoneMove();
+location.href=sUrl; //открыть страничку в этом же окне
+ }
+}
+
+
+
+ function newPageSelect(sUrl,sMoveMenuItem)
+ {
+  // Menu item was selected. Here you can add our own code what to do next when the
+  // menu item sMoveMenuItem was selected
+  // sUrl contains the url to move to
+  var s;
+  var iTempLeft;
+  if ((sPrevMenuItem != sMoveMenuItem) && ((bRightDone) && (bLeftDone)))
+  {
+   bPlaying = true;
+   if (sPrevMenuItem!="")
+   {
+     iTempLeft=""
+     iTempLeft=document.images(sPrevMenuItem).style.left;
+     iMoveLeft=eval(iTempLeft.substring(0,iTempLeft.length-2));
+     moveMenuItemBack()
+   }
+   sMenuItem=sMoveMenuItem;
+   s=document.images(sMenuItem).style.left + "";
+   iMoveRight = eval(s.substring(0,s.length-2));
+   iMoveBack = iMoveRight;
+   moveMenuItem(sUrl);
+   bPlaying = false;
+  }   
+ } 
+ 
+ 
+ function animateHeadersDown()
+ {
+  var s;
+  var iStep;
+
+  // Move headers down (header are in the moveArray array)
+
+  for (i=0;i<=moveItems;i++)
+  {
+    s = document.images(moveArray[moveItems]).style.top + "";
+    s = s.substring(0,s.length-2);
+
+    if ((eval(s)-10)>=iMaxTop)
+     iStep = iMaxTop - eval(s) ;
+    else
+     iStep = iSpeed;
+
+
+    s = document.images(moveArray[i]).style.top + "";
+    s = s.substring(0,s.length-2);
+    document.images(moveArray[i]).style.top=eval(s) + iStep;
+  }
+
+  s = document.images(moveArray[moveItems]).style.top + "";
+  s = s.substring(0,s.length-2);
+  
+  if ((eval(s)<iMaxTop) && (moveItems!=-1))
+   setTimeout("animateHeadersDown()",10)
+  else
+  {
+   for (i=0;i<=objShowAfterAnimation.children.length-1;i++)
+   {
+   objShowAfterAnimation.children(i).filters.blendTrans.apply();
+   objShowAfterAnimation.children(i).style.visibility="visible";
+   objShowAfterAnimation.children(i).filters.blendTrans.play();
+   }
+  }
+ }
+
+function animateHeadersUp()
+ {
+  var s;
+  var iStep;
+
+  // Move headers up (header are in the moveArray array)
+  
+  for (i=0;i<=moveItems;i++)
+  {
+    s = document.images(moveArray[i]).style.top + "";
+    s = s.substring(0,s.length-2);
+
+    if ((eval(s)-10)<=iMaxTop)
+     iStep = eval(s) - iMaxTop ;
+    else
+     iStep = iSpeed;
+
+    document.images(moveArray[i]).style.top=eval(s) - iStep;
+  }
+ 
+  s = document.images(moveArray[moveItems]).style.top + "";
+  s = s.substring(0,s.length-2);
+  if (eval(s)>iMaxTop)
+   setTimeout("animateHeadersUp()",10)
+  else
+  {
+   for (i=0;i<=objShowAfterAnimation.children.length-1;i++)
+   {
+   objShowAfterAnimation.children(i).filters.blendTrans.apply();
+   objShowAfterAnimation.children(i).style.visibility="visible";
+   objShowAfterAnimation.children(i).filters.blendTrans.play();
+   }
+  }
+ }
+
+ function openMenu(nrOfItems,idOfItemInArray,objToShow)
+ {
+  var s ;
+  var bFound;
+  var iIndex;
+
+  if (bInitDone)
+  {
+   if (iSelectedItem!=idOfItemInArray)
+   {
+ 
+   if (objHideBeforeAnimation!="")
+  
+   {
+    for (i=0;i<=objHideBeforeAnimation.children.length-1;i++)
+    {
+     objHideBeforeAnimation.children(i).filters.blendTrans.apply();
+     objHideBeforeAnimation.children(i).style.visibility="hidden";
+     objHideBeforeAnimation.children(i).filters.blendTrans.play();
+    }
+ 
+   }
+   iIndex = eval(idOfItemInArray);
+   objHideBeforeAnimation = objToShow;
+   objShowAfterAnimation = objToShow;
+
+   moveItems=-1;
+   moveArray.length=0; // Empty array before using it
+   iIndex = eval(idOfItemInArray);
+   bFound = false;
+
+
+   if (splitterArray[iIndex]==0)
+   {
+    // item is up
+ 
+    iIndex++;
+    while ((iIndex<=iNrOfItemsInArray) && (!bFound))
+    {
+     if (splitterArray[iIndex]==1) // Zoek eerste item dat beneden staat
+      bFound = true;
+     else
+      iIndex++;
+    } 
+   
+    if (bFound)
+    {
+      s = document.images("split" + iIndex).style.top + "";
+      s = s.substring(0,s.length-2);
+      iMaxTop = eval(s) - 30;
+    }
+    else
+     iMaxTop = 350;
+ 
+    iIndex = eval(idOfItemInArray);
+    iIndex++; // Start at next item
+    while (iIndex<=iNrOfItemsInArray)
+    {
+     if (splitterArray[iIndex]==0)
+     {
+      moveItems++;
+ 
+      moveArray[moveItems] = "split" + iIndex;
+      splitterArray[iIndex]=1;
+     }
+     iIndex++;
+    }
+ 
+    animateHeadersDown();
+    
+   }
+   else
+   {
+    // selected item is up
+    while ((iIndex>=0) && (!bFound))
+    {
+     if (splitterArray[iIndex]==0) // Zoek eerste item dat omhoog staat
+      bFound = true;
+     else
+      iIndex--;
+    } 
+   
+    if (bFound)
+    {
+      s = document.images("split" + iIndex).style.top + "";
+      s = s.substring(0,s.length-2);
+      iMaxTop = eval(s) + 30;
+    }
+    else
+     iMaxTop = 190;
+     
+    iIndex = eval(idOfItemInArray);
+    while (iIndex>=0)
+    {
+     if (splitterArray[iIndex]==1)
+     {
+      moveItems++;
+ 
+      moveArray[moveItems] = "split" + iIndex;
+      splitterArray[iIndex]=0;
+     }
+     iIndex--;
+    }
+
+    animateHeadersUp();
+   }
+   iSelectedItem=idOfItemInArray;
+   }
+  }
+ }
+</script>
+<SCRIPT LANGUAGE "JavaScript" TYPE="text/javascript">
+// отключение вывода сообщений об ошибках
+window.onerror = null;
+
+// объект tooltip
+tooltip = {
+
+  attr_name: "tooltip", // наименование создаваемого tooltip'ого атрибута
+  blank_text: "(откроется в новом окне)", // текст для ссылок с target="_blank"
+  newline_entity: "  ", // укажите пустую строку (""), если не хотите использовать в tooltip'ах многострочность; ежели хотите, то укажите тот символ или символы, которые будут заменяться на перевод строки
+  max_width:0, // максимальная ширина tooltip'а в пикселах; обнулите это значение, если ширина должна быть нелимитирована
+  delay: 500, // задержка при показе tooltip'а в миллисекундах
+
+  // создание слоя, в котором будет находится текст подсказки (точнее, TextNode, содержащий текст)
+  t: document.createElement("DIV"),
+
+  // таймер
+  c: null,
+
+  // флаг, указывающий показана ли сейчас на экране подсказка
+  g: false,
+
+  // обработчик события onMouseMove
+  m: function(e){
+    // если подсказка была вызвана на экран
+    if (tooltip.g){
+      // важно! определяем канву, учитывая режим совместимости в IE 6
+      oCanvas = document.getElementsByTagName(
+      (document.compatMode && document.compatMode == "CSS1Compat") ? "HTML" : "BODY"
+      )[0];
+      // x-координата, где произошёл вызов подсказки
+      x = window.event ? event.clientX + oCanvas.scrollLeft : e.pageX;
+      // y-координата, где произошёл вызов подсказки
+      y = window.event ? event.clientY + oCanvas.scrollTop : e.pageY;
+      // вывод подсказки на экран (задание координат)
+      tooltip.a(x, y);
+    }
+  },
+
+  d: function(){
+    // установка атрибута id со значением tooltip (который описан у нас в CSS)
+    tooltip.t.setAttribute("id", "tooltip");
+    // добавление к элементу body дочернего объекта tooltip
+    document.body.appendChild(tooltip.t);
+    /* далее мы считываем в массив все элементы, затем у тех,
+    которые имеют HTML атрибуты title и alt задаём
+    новый атрибут tooltip.attr_name (текст подсказки);
+    мы также задаём обработчики событий onMouseOver и onMouseOut */
+    a = (document.all) ? document.all : document.getElementsByTagName("*");
+    aLength = a.length;
+    for (var i = 0; i < aLength; i++){
+      // bugfix! иначе Opera 7 + <embed> + tooltip = глюк (указал Bash)
+      if (!a[i]) continue;
+      tooltip_title = a[i].getAttribute("title");
+      tooltip_alt = a[i].getAttribute("alt");
+      tooltip_blank = a[i].getAttribute("target") && a[i].getAttribute("target") == "_blank" && tooltip.blank_text;
+      if (tooltip_title || tooltip_blank){
+        a[i].setAttribute(tooltip.attr_name, tooltip_blank ? (tooltip_title ? tooltip_title + " " + tooltip.blank_text : tooltip.blank_text) : tooltip_title);
+        if (a[i].getAttribute(tooltip.attr_name)){
+          a[i].removeAttribute("title");
+          if (tooltip_alt && a[i].complete) a[i].removeAttribute("alt");
+          tooltip.l(a[i], "mouseover", tooltip.s);
+          tooltip.l(a[i], "mouseout", tooltip.h);
+        }
+      }else if (tooltip_alt && a[i].complete){
+        a[i].setAttribute(tooltip.attr_name, tooltip_alt);
+        if (a[i].getAttribute(tooltip.attr_name)){
+          a[i].removeAttribute("alt");
+          tooltip.l(a[i], "mouseover", tooltip.s);
+          tooltip.l(a[i], "mouseout", tooltip.h);
+        }
+      }
+      if (!a[i].getAttribute(tooltip.attr_name) && tooltip_blank){
+        //
+      }
+    }
+    // задаём для документа обработчик события onMouseMove
+    document.onmousemove = tooltip.m;
+    // прячем подсказку при скроллинге
+    window.onscroll = tooltip.h;
+    // bugfix! при появлении первого тултипа дергается вертикальный скролбар (указал spamcollector)
+    tooltip.a(-99, -99);
+  },
+
+  // подготавливаем подсказку для вывода на экран
+  s: function(e){
+    // получаем объект, у которого будет показана подсказка
+    d = (window.event) ? window.event.srcElement : e.target;
+    // нелишняя проверка на наличее свойства tooltip.attr_name
+    if (!d.getAttribute(tooltip.attr_name)) return;
+    s = d.getAttribute(tooltip.attr_name);
+    // если используются в tooltip'ах переводы строк
+    if (tooltip.newline_entity){
+      s = s.replace(/\&/g,"&amp;");
+      s = s.replace(/\</g,"&lt;");
+      s = s.replace(/\>/g,"&gt;");
+      s = s.replace(eval("/" + tooltip.newline_entity + "/g"), "<br />");
+      tooltip.t.innerHTML = s;
+    }else{
+      // удаляем у слоя с подсказкой первый дочерний объект (TextNode с текстом), если он вдуг не удалился раньше
+      if (tooltip.t.firstChild) tooltip.t.removeChild(tooltip.t.firstChild);
+      /* добавляем к элементу t (слой) новый TextNode, содержащий текст,
+      взятый из свойства tooltip.attr_name активного объекта */
+      tooltip.t.appendChild(document.createTextNode(s));
+    }
+    // показываем подсказку с задержкой
+    tooltip.c = setTimeout("tooltip.t.style.visibility = 'visible';", tooltip.delay);
+    // устанавливаем флаг, сигнализирующий о том, что подсказка у нас на экране
+    tooltip.g = true;
+  },
+
+  // удаляем подсказку с экрана
+  h: function(e){
+    // прячем подсказку
+    tooltip.t.style.visibility = "hidden";
+    // удаляем у слоя с подсказкой первый дочерний объект (TextNode с текстом)
+    if (!tooltip.newline_entity && tooltip.t.firstChild) tooltip.t.removeChild(tooltip.t.firstChild);
+    // убираем задержку
+    clearTimeout(tooltip.c);
+    // устанавливаем флаг
+    tooltip.g = false;
+    // с глаз долой…
+    tooltip.a(-99, -99);
+  },
+
+  // делаем так, чтобы элементы с title и alt нужным образом реагировали на события onMouseOver и onMouseOut
+  l: function(o, e, a){
+    if (o.addEventListener) o.addEventListener(e, a, false); // было true (не работает в Opera 7)
+    else if (o.attachEvent) o.attachEvent("on" + e, a);
+      else return null;
+  },
+
+  // устанавливаем координаты всплывающей подсказки
+  a: function(x, y){
+    // важно! определяем канву, учитывая режим совместимости в IE 6
+    oCanvas = document.getElementsByTagName(
+    (document.compatMode && document.compatMode == "CSS1Compat") ? "HTML" : "BODY"
+    )[0];
+
+    w_width = oCanvas.clientWidth ? oCanvas.clientWidth + oCanvas.scrollLeft : window.innerWidth + window.pageXOffset;
+    w_height = window.innerHeight ? window.innerHeight + window.pageYOffset : oCanvas.clientHeight + oCanvas.scrollTop;
+
+    tooltip.t.style.width = ((tooltip.max_width) && (tooltip.t.offsetWidth > tooltip.max_width)) ? tooltip.max_width + "px" : "auto";
+
+    t_width = tooltip.t.offsetWidth;
+    t_height = tooltip.t.offsetHeight;
+
+    // x-координата
+    tooltip.t.style.left = x + 160 + "px";
+    // y-координата
+    tooltip.t.style.top = y + -5 + "px";
+
+    // bugfix! делаем так, чтобы подсказка не вылазила за границы окна
+    if (x + t_width > w_width) tooltip.t.style.left = w_width - t_width + "px";
+    if (y + t_height > w_height) tooltip.t.style.top = w_height - t_height + "px";
+}
+}
+// вешаем обработчик для запуска создания tooltip'а
+var root = window.addEventListener || window.attachEvent ? window : document.addEventListener ? document : null;
+if (root){
+  if (root.addEventListener) root.addEventListener("load", tooltip.d, false);
+  else if (root.attachEvent) root.attachEvent("onload", tooltip.d);
+}
+</SCRIPT>
+</head>
+
+<body onLoad="initializeVariables()" bgcolor="#ffffff" text="#000000" leftmargin="0" rightmargin="0" topmargin="0" marginwidth="0">
+
+<!--Начало HTML-кода заголовка -->
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" height="100" background="images/bg.gif">
+  <tr> 
+    <td width="50%"><div align="left"><img src="images/top.gif" width="274" height="100"></div>
+	</td>
+    <td width="50%">
+      <div align="right"><img src="images/top_graphic.gif" width="400" height="100"></div>
+    </td>
+  </tr>
+</table>
+
+<!--Конец HTML-кода заголовка -->
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" height="100">
+  <tr>
+    
+	<!--Начало HTML-кода menu -->
+	
+	<td width="7%" valign="top" style="background-image: url(images/b_navbar_bg.gif)">
+	  <table width=135 border=0 cellpadding=0 cellspacing=0>
+       <tr> 
+         <td colspan=4> <img src="images/menu_1.gif" width=135 height=23></td>
+       </tr>
+      <tr> 
+		  <td> <img src="images/menu_02_1.gif" width=11 height=32></td>
+         <td> <img src="images/menu_02_2_top.gif" width=3 height=32></td>
+		 <td> <a href="index.html"> <IMG SRC="images/button_01.gif" WIDTH="118" HEIGHT="32" BORDER="0" onMOUSEoVER="this.src='images/button_01_over.gif'"
+<IMG SRC="images/button_01.gif" WIDTH="118" HEIGHT="32" BORDER=0"  onMouseOver="this.src='images/button_01_over.gif'" onMouseOut="this.src='images/button_01.gif'"></a></td>
+         <td> <img src="images/menu_04_1.gif" width=3 height=32></td>
+       </tr>
+	  
+	  <tr>
+		  <td rowspan=2>              <!--Для добавления или уменьшения  количества кнопок в меню изменить это число
+		                                по формуле: Rowspan=Число_кнопок_в_меню - 2   
+								      -->
+		    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+               <tr> 
+                 <td>
+	             </td>
+               </tr>
+            </table>
+		  </td>
+		  <td colspan=3>
+		    <table width="100%" height="100%" border="0" cellspacing="0" cellpadding="0">
+               <tr> 
+	          <td> <a href="overview.html"> <IMG SRC="images/button_02.gif" WIDTH="124" HEIGHT="32" BORDER="0" onMOUSEoVER="this.src='images/button_02_over.gif'"
+<IMG SRC="images/button_02.gif" WIDTH="124" HEIGHT="32" BORDER=0"  onMouseOver="this.src='images/button_02_over.gif'" onMouseOut="this.src='images/button_02.gif'"></a></td>   
+			   </tr>
+            </table>
+		  </td>
+	  </tr>	  
+	  
+	  <tr>  <!--Начало HTML-кода кнопки -->
+		  <td colspan=3>
+		    <table width="100%" height="100%" border="0" cellspacing="0" cellpadding="0">
+               <tr> 
+	           <td> <a href="map.html"> <IMG SRC="images/button_03.gif" WIDTH="124" HEIGHT="32" BORDER="0"  onMOUSEoVER="this.src='images/button_03_over.gif'"
+<IMG SRC="images/button_03.gif" WIDTH="124" HEIGHT="32" BORDER=0"  onMouseOver="this.src='images/button_03_over.gif'" onMouseOut="this.src='images/button_03.gif'"></a></td>     
+			   </tr>
+            </table>
+		  </td>
+	  </tr>	 <!--Конец HTML-кода кнопки -->
+	  
+	  <!--Чтобы добавить кнопку нужно скопировать выше написаный код, между обозначениями  
+	  "начало" и "конец" HTML-кода кнопки и вставить его после этих комментариев-->
+	  
+	  
+	  <tr> 
+		  <td> <img src="images/menu_02_1.gif" width=11 height=32></td>
+         <td> <img src="images/menu_02_3.gif" width=3 height=32></td>
+		 <td> <a href="author.html"> <IMG SRC="images/button_04.gif" WIDTH="118" HEIGHT="32" BORDER="0" onMOUSEoVER="this.src='images/button_04_over.gif'"
+<IMG SRC="images/button_04.gif" WIDTH="118" HEIGHT="32" BORDER=0"  onMouseOver="this.src='images/button_04_over.gif'" onMouseOut="this.src='images/button_04.gif'"></a></td>
+         <td> <img src="images/menu_04_1.gif" width=3 height=32></td>
+       </tr>
+	  <tr> 
+		  <td colspan=2> <img src="images/menu_02_2.gif" width=11 height=38></td>
+	     <td> <img src="images/menu_09.gif" width=118 height=38></td>
+	     <td> <img src="images/menu_04_2.gif" width=3 height=38></td>
+	   </tr> 
+	  </table>
+	</td>
+   
+   <!--Конец HTML-кода menu -->
+   
+    <td width="97%">
+	  <table border=0  width="100%" cellspacing="0" cellpadding="0">
+	    <!--Начало HTML-кода основного текста -->
+		<tr><td class="header2">Содержание</td></tr>
+		<tr>
+          <td height="314" style="text-align:justify; padding-left:10px; position:relative; top:0px">
+  <img STYLE="POSITION: absolute;TOP : 35;LEFT:1" SRC="images/header1.gif" ID="split1" BORDER="0"  onClick="openMenu(3,1,CompanyInfo)" onMouseOver = "style.cursor='hand';">  
+  <div ID="CompanyInfo">
+   <img STYLE="visibility:hidden;filter: blendTrans(duration=0.2);POSITION: absolute;TOP : 65;LEFT:69" SRC="images/item1.gif" ID="SubMenu01" BORDER="0" onClick="newPageSelect('chapter_overview.html',this.id)" onMouseOver="style.cursor='hand';" alt="Введение.   Обзор содержания данного учебника.   Основные сведения о языке Verilog HDL">
+   <img STYLE="visibility:hidden;filter: blendTrans(duration=0.2);POSITION: absolute;TOP : 85;LEFT:69" SRC="images/item2.gif" ID="SubMenu02" BORDER="0" onClick="newPageSelect('1_2_1.html',this.id)" onMouseOver="style.cursor='hand';" alt="В данном разделе обсуждаются   традиционные методы моделирования,   такие как моделирование с   использованием Буллевых уравнений и   более универсальное автоматизированное   схематическое моделирование. Ранние   версии языка описания   аппаратных средств ЭВМ - лучшее,   но не идеальное решение.">
+   <img STYLE="visibility:hidden;filter: blendTrans(duration=0.2);POSITION: absolute;TOP : 107;LEFT:69" SRC="images/item3.gif" ID="SubMenu03" BORDER="0" onClick="newPageSelect('1_3_1.html',this.id)" onMouseOver="style.cursor='hand';" alt="Введение в Verilog HDL, его   появление, области применения,   преимущества и недостатки">
+  </div>
+  <img STYLE="POSITION: absolute;TOP : 65;LEFT:1" SRC="images/header2.gif" ID="split2" BORDER="0"  onClick="openMenu(3,2,AanpakInfo)" onMouseOver = "style.cursor='hand';">
+  <div ID="AanpakInfo">
+   <img STYLE="visibility:hidden;filter: blendTrans(duration=0.2);POSITION: absolute;TOP : 95;LEFT:69" SRC="images/item1.gif" ID="SubMenu11" BORDER="0" onClick="newPageSelect('chapter_overview2.html',this.id)" onMouseOver="style.cursor='hand';"alt=>
+   <img STYLE="visibility:hidden;filter: blendTrans(duration=0.2);POSITION: absolute;TOP : 115;LEFT:69" SRC="images/item2_2.gif" ID="SubMenu12" BORDER="0" onClick="newPageSelect('2_2_1.html',this.id)" onMouseOver="style.cursor='hand';">  
+   <img STYLE="visibility:hidden;filter: blendTrans(duration=0.2);POSITION: absolute;TOP : 135;LEFT:69" SRC="images/item2_3.gif" ID="SubMenu13" BORDER="0" onClick="newPageSelect('2_3_1.html',this.id)" onMouseOver="style.cursor='hand';">
+   <img STYLE="visibility:hidden;filter: blendTrans(duration=0.2);POSITION: absolute;TOP : 155;LEFT:69" SRC="images/item2_4.gif" ID="SubMenu14" BORDER="0" onClick="newPageSelect('2_4_1.html',this.id)" onMouseOver="style.cursor='hand';" >
+   <img STYLE="visibility:hidden;filter: blendTrans(duration=0.2);POSITION: absolute;TOP : 175;LEFT:69" SRC="images/item2_5.gif" ID="SubMenu15" BORDER="0" onClick="newPageSelect('2_5_1.html',this.id)" onMouseOver="style.cursor='hand';" >
+  </div>
+  <img STYLE="POSITION: absolute;TOP : 95;LEFT:0" SRC="images/header3.gif" ID="split3" BORDER="0" onClick="openMenu(3,3,DemoInfo)" onMouseOver = "style.cursor='hand';">
+  <div ID="DemoInfo">
+   <img STYLE="visibility:hidden;filter: blendTrans(duration=0.2);POSITION: absolute;TOP : 125;LEFT:69" SRC="images/item1.gif" ID="SubMenu21" BORDER="0" onClick="newPageSelect('chapter_overview3.html',this.id)" onMouseOver="style.cursor='hand';" >
+   <img STYLE="visibility:hidden;filter: blendTrans(duration=0.2);POSITION: absolute;TOP : 145;LEFT:69" SRC="images/item3_2.gif" ID="SubMenu22" onClick="newPageSelect('3_2_1.html',this.id)" onMouseOver="style.cursor='hand';" >
+   <img STYLE="visibility:hidden;filter: blendTrans(duration=0.2);POSITION: absolute;TOP : 165;LEFT:69" SRC="images/item3_3.gif" ID="SubMenu23" onClick="newPageSelect('3_3_1.html',this.id)" onMouseOver="style.cursor='hand';" >
+   <img STYLE="visibility:hidden;filter: blendTrans(duration=0.2);POSITION: absolute;TOP : 185;LEFT:69" SRC="images/item3_4.gif" ID="SubMenu24" onClick="newPageSelect('3_4_1.html',this.id)" onMouseOver="style.cursor='hand';" >
+    </div>
+  <img STYLE="POSITION: absolute;TOP : 125;LEFT:0" SRC="images/header4.gif" ID="split4" BORDER="0" onClick="openMenu(3,4,Item4)" onMouseOver = "style.cursor='hand';">
+  <div ID="Item4">
+   <img STYLE="visibility:hidden;filter: blendTrans(duration=0.2);POSITION: absolute;TOP : 155;LEFT:69" SRC="images/item1.gif" ID="SubMenu31" BORDER="0" onClick="newPageSelect('chapter_overview4.html',this.id)" onMouseOver="style.cursor='hand';" >
+   <img STYLE="visibility:hidden;filter: blendTrans(duration=0.2);POSITION: absolute;TOP : 175;LEFT:69" SRC="images/item4_2.gif" ID="SubMenu32" onClick="newPageSelect('4_2_1.html',this.id)" onMouseOver="style.cursor='hand';" >
+   <img STYLE="visibility:hidden;filter: blendTrans(duration=0.2);POSITION: absolute;TOP : 195;LEFT:69" SRC="images/item4_3.gif" ID="SubMenu33" onClick="newPageSelect('4_3_1.html',this.id)" onMouseOver="style.cursor='hand';" >
+   <img STYLE="visibility:hidden;filter: blendTrans(duration=0.2);POSITION: absolute;TOP : 215;LEFT:69" SRC="images/item4_4.gif" ID="SubMenu34" onClick="newPageSelect('4_4_1.html',this.id)" onMouseOver="style.cursor='hand';" >
+     </div>
+   <img STYLE="POSITION: absolute;TOP : 155;LEFT:0" SRC="images/header5.gif" ID="split5" BORDER="0" onClick="openMenu(3,5,Item5)" onMouseOver = "style.cursor='hand';">
+   <div ID="Item5">
+   <img STYLE="visibility:hidden;filter: blendTrans(duration=0.2);POSITION: absolute;TOP : 185;LEFT:69" SRC="images/item1.gif" ID="SubMenu41" BORDER="0" onClick="newPageSelect('chapter_overview5.html',this.id)" onMouseOver="style.cursor='hand';" >
+   <img STYLE="visibility:hidden;filter: blendTrans(duration=0.2);POSITION: absolute;TOP : 205;LEFT:69" SRC="images/item5_2.gif" ID="SubMenu42" onClick="newPageSelect('5_2_1.html',this.id)" onMouseOver="style.cursor='hand';" >
+   <img STYLE="visibility:hidden;filter: blendTrans(duration=0.2);POSITION: absolute;TOP : 225;LEFT:69" SRC="images/item5_3.gif" ID="SubMenu43" onClick="newPageSelect('5_3_1.html',this.id)" onMouseOver="style.cursor='hand';" >
+   <img STYLE="visibility:hidden;filter: blendTrans(duration=0.2);POSITION: absolute;TOP : 245;LEFT:69" SRC="images/item5_4.gif" ID="SubMenu44" onClick="newPageSelect('5_4_1.html',this.id)" onMouseOver="style.cursor='hand';" >
+   <img STYLE="visibility:hidden;filter: blendTrans(duration=0.2);POSITION: absolute;TOP : 265;LEFT:69" SRC="images/item5_5.gif" ID="SubMenu45" onClick="newPageSelect('5_5_1.html',this.id)" onMouseOver="style.cursor='hand';" >
+   </div>
+  <img STYLE="POSITION: absolute;TOP : 185;LEFT:0" SRC="images/header6.gif" ID="split6" BORDER="0" onClick="openMenu(3,6,Item6)" onMouseOver = "style.cursor='hand';">
+   <div ID="Item6">
+   <img STYLE="visibility:hidden;filter: blendTrans(duration=0.2);POSITION: absolute;TOP : 205;LEFT:69" SRC="images/item1.gif" ID="SubMenu61" BORDER="0" onClick="newPageSelect('chapter_overview6.html',this.id)" onMouseOver="style.cursor='hand';" >
+   <img STYLE="visibility:hidden;filter: blendTrans(duration=0.2);POSITION: absolute;TOP : 225;LEFT:69" SRC="images/item6_2.gif" ID="SubMenu62" onClick="newPageSelect('6_2_1.html',this.id)" onMouseOver="style.cursor='hand';" >
+   <img STYLE="visibility:hidden;filter: blendTrans(duration=0.2);POSITION: absolute;TOP : 245;LEFT:69" SRC="images/item6_3.gif" ID="SubMenu63" onClick="newPageSelect('6_3_1.html',this.id)" onMouseOver="style.cursor='hand';" >
+   <img STYLE="visibility:hidden;filter: blendTrans(duration=0.2);POSITION: absolute;TOP : 265;LEFT:69" SRC="images/item6_4.gif" ID="SubMenu64" onClick="newPageSelect('6_4_1.html',this.id)" onMouseOver="style.cursor='hand';" >
+   <img STYLE="visibility:hidden;filter: blendTrans(duration=0.2);POSITION: absolute;TOP : 285;LEFT:69" SRC="images/item6_5.gif" ID="SubMenu65" onClick="newPageSelect('6_5_1.html',this.id)" onMouseOver="style.cursor='hand';" >
+    </div>
+  <img STYLE="POSITION: absolute;TOP : 215;LEFT:0" SRC="images/header7.gif" ID="split7" BORDER="0" onClick="openMenu(3,7,Item7)" onMouseOver = "style.cursor='hand';">
+   <div ID="Item7">
+   <img STYLE="visibility:hidden;filter: blendTrans(duration=0.2);POSITION: absolute;TOP : 235;LEFT:69" SRC="images/item1.gif" ID="SubMenu71" BORDER="0" onClick="newPageSelect('chapter_overview7.html',this.id)" onMouseOver="style.cursor='hand';" >
+   <img STYLE="visibility:hidden;filter: blendTrans(duration=0.2);POSITION: absolute;TOP : 255;LEFT:69" SRC="images/item7_2.gif" ID="SubMenu72" onClick="newPageSelect('7_2_1.html',this.id)" onMouseOver="style.cursor='hand';" >
+   <img STYLE="visibility:hidden;filter: blendTrans(duration=0.2);POSITION: absolute;TOP : 275;LEFT:69" SRC="images/item7_3.gif" ID="SubMenu73" onClick="newPageSelect('7_3_1.html',this.id)" onMouseOver="style.cursor='hand';" >
+   <img STYLE="visibility:hidden;filter: blendTrans(duration=0.2);POSITION: absolute;TOP : 295;LEFT:69" SRC="images/item7_4.gif" ID="SubMenu74" onClick="newPageSelect('7_4_1.html',this.id)" onMouseOver="style.cursor='hand';" >
+   <img STYLE="visibility:hidden;filter: blendTrans(duration=0.2);POSITION: absolute;TOP : 315;LEFT:69" SRC="images/item7_5.gif" ID="SubMenu75" onClick="newPageSelect('7_5_1.html',this.id)" onMouseOver="style.cursor='hand';" >
+    </div>
+  <img STYLE="POSITION: absolute;TOP : 245;LEFT:0" SRC="images/header8.gif" ID="split8" BORDER="0" onClick="openMenu(3,8,Item8)" onMouseOver = "style.cursor='hand';">
+   <div ID="Item8">
+   <img STYLE="visibility:hidden;filter: blendTrans(duration=0.2);POSITION: absolute;TOP : 265;LEFT:69" SRC="images/item1.gif" ID="SubMenu81" BORDER="0" onClick="newPageSelect('chapter_overview8.html',this.id)" onMouseOver="style.cursor='hand';" >
+   <img STYLE="visibility:hidden;filter: blendTrans(duration=0.2);POSITION: absolute;TOP : 285;LEFT:69" SRC="images/item8_2.gif" ID="SubMenu82" onClick="newPageSelect('8_2_1.html',this.id)" onMouseOver="style.cursor='hand';" >
+   <img STYLE="visibility:hidden;filter: blendTrans(duration=0.2);POSITION: absolute;TOP : 305;LEFT:69" SRC="images/item8_3.gif" ID="SubMenu83" onClick="newPageSelect('8_3_1.html',this.id)" onMouseOver="style.cursor='hand';" >
+   <img STYLE="visibility:hidden;filter: blendTrans(duration=0.2);POSITION: absolute;TOP : 325;LEFT:69" SRC="images/item8_4.gif" ID="SubMenu84" onClick="newPageSelect('8_4_1.html',this.id)" onMouseOver="style.cursor='hand';" >
+    </div>
+  <img STYLE="POSITION: absolute;TOP : 275;LEFT:0" SRC="images/header9.gif" ID="split9" BORDER="0" onClick="openMenu(3,9,Item9)" onMouseOver = "style.cursor='hand';">
+   <div ID="Item9">
+   <img STYLE="visibility:hidden;filter: blendTrans(duration=0.2);POSITION: absolute;TOP : 295;LEFT:69" SRC="images/item1.gif" ID="SubMenu91" BORDER="0" onClick="newPageSelect('chapter_overview9.html',this.id)" onMouseOver="style.cursor='hand';" >
+   <img STYLE="visibility:hidden;filter: blendTrans(duration=0.2);POSITION: absolute;TOP : 315;LEFT:69" SRC="images/item9_2.gif" ID="SubMenu92" onClick="newPageSelect('9_2_1.html',this.id)" onMouseOver="style.cursor='hand';" >
+   <img STYLE="visibility:hidden;filter: blendTrans(duration=0.2);POSITION: absolute;TOP : 335;LEFT:69" SRC="images/item9_3.gif" ID="SubMenu93" onClick="newPageSelect('9_3_1.html',this.id)" onMouseOver="style.cursor='hand';" >
+    </div>
+  
+		   <script language="JavaScript">
+var s=screen;
+height=s.height;
+var tabl = 300;
+var h = height;
+if ( h >= 768 ) { tabl = 450; }
+document.write('<td height='+tabl+'px>');
+</script>
+		  </td>
+        </tr>
+        <!--Конец HTML-кода основного текста -->
+		
+		<!--Начало HTML-кода конечного изображения в виде линии -->
+		<tr>
+		  <td>
+		    <table width="100%" border="0" cellspacing="0" cellpadding="0"  background="images/2.gif">
+               <tr> 
+                 <td width="50%"><div align="left"><img src="images/1.gif" width="27" height="17"></div>
+	             </td>
+                 <td width="50%">
+                 <div align="right"><img src="images/2.gif" width="27" height="17"></div>
+                 </td>
+               </tr>
+            </table>
+		  </td>
+		</tr>	  
+	    <tr>
+		  <td>
+		    <table width="100%" border="0" cellspacing="0" cellpadding="0" height="13" background="images/3.gif">
+               <tr> 
+                 <td></td>
+               </tr>
+            </table>
+		  </td>
+		</tr>	  
+	  <!--Конец HTML-кода конечного изображения в виде линии -->
+	  </table>
+	</td>
+  </tr>
+</table>
+
+</body>
+</html>
+
+
